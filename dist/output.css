@@ -543,12 +543,38 @@ video {
   margin-right: auto;
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.ml-5 {
+  margin-left: 1.25rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
+.ml-12 {
+  margin-left: 3rem;
 }
 
 .block {
@@ -563,48 +589,32 @@ video {
   display: table;
 }
 
-.h-44 {
-  height: 11rem;
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+.h-96 {
+  height: 24rem;
 }
 
 .h-screen {
   height: 100vh;
 }
 
-.h-52 {
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-\[13rem\] {
   height: 13rem;
 }
 
-.h-60 {
-  height: 15rem;
-}
-
-.h-72 {
-  height: 18rem;
-}
-
-.h-80 {
-  height: 20rem;
-}
-
-.h-7 {
-  height: 1.75rem;
-}
-
-.h-\[300px\] {
-  height: 300px;
-}
-
-.h-\[400px\] {
-  height: 400px;
-}
-
-.h-\[380px\] {
-  height: 380px;
-}
-
-.h-96 {
-  height: 24rem;
+.h-\[68px\] {
+  height: 68px;
 }
 
 .w-4\/5 {
@@ -615,6 +625,18 @@ video {
   width: 100%;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-\[20vh\] {
+  width: 20vh;
+}
+
+.w-\[80\%\] {
+  width: 80%;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -623,8 +645,24 @@ video {
   flex: none;
 }
 
+.basis-\[50\%\] {
+  flex-basis: 50%;
+}
+
+.basis-\[15\%\] {
+  flex-basis: 15%;
+}
+
 .table-auto {
   table-layout: auto;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.resize-none {
+  resize: none;
 }
 
 .appearance-none {
@@ -645,6 +683,10 @@ video {
   align-items: center;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -657,6 +699,10 @@ video {
   gap: 1.5rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -665,8 +711,25 @@ video {
   border-radius: 0.25rem;
 }
 
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
 .border {
   border-width: 1px;
+}
+
+.border-r-\[1\.5px\] {
+  border-right-width: 1.5px;
+}
+
+.border-\[\#DFE8F6\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(223 232 246 / var(--tw-border-opacity));
 }
 
 .bg-blue-500 {
@@ -687,6 +750,16 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#6245D5\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(98 69 213 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#FC9269\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 146 105 / var(--tw-bg-opacity));
 }
 
 .p-8 {
@@ -712,6 +785,18 @@ video {
   text-align: center;
 }
 
+.text-start {
+  text-align: start;
+}
+
+.align-middle {
+  vertical-align: middle;
+}
+
+.font-poppins {
+  font-family: Poppins, sans-serif;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -720,6 +805,11 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .font-bold {
@@ -744,6 +834,16 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-\[\#6245D5\] {
+  --tw-text-opacity: 1;
+  color: rgb(98 69 213 / var(--tw-text-opacity));
+}
+
+.text-\[\#A69FAD\] {
+  --tw-text-opacity: 1;
+  color: rgb(166 159 173 / var(--tw-text-opacity));
+}
+
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -755,7 +855,68 @@ video {
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\#6245D5\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(98 69 213 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#ff8a5c\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 138 92 / var(--tw-bg-opacity));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+@media (min-width: 1024px) {
+  .lg\:p-2 {
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
+  .xl\:block {
+    display: block;
+  }
+
+  .xl\:px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .xl\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .xl\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .xl\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:mt-8 {
+    margin-top: 2rem;
+  }
+
+  .\32xl\:p-6 {
+    padding: 1.5rem;
+  }
 }
