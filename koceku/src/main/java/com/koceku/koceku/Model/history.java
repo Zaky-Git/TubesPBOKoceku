@@ -1,13 +1,13 @@
 package com.koceku.koceku.Model;
 
-public class history {
+public class History {
     private String type;
     private String phoneNumber;
     private String name;
     private String amount;
     private String status;
 
-    public history(String type, String phoneNumber, String name, String amount, String status) {
+    public History(String type, String phoneNumber, String name, String amount, String status) {
         this.type = type;
         this.phoneNumber = phoneNumber;
         this.name = name;

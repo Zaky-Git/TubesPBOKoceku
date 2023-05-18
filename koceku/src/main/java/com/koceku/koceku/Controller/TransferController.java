@@ -10,11 +10,11 @@ import com.koceku.koceku.Model.*;
 @Controller
 public class TransferController {
 
-    private ArrayList<history> listHistory = new ArrayList<>();
+    private ArrayList<History> listHistory = new ArrayList<>();
 
     @GetMapping("/transfer")
     public String Transfer(Model model) {
-        history h1 = new history("Transfer",
+        History h1 = new History("Transfer",
                 "08221212313121", "wahyu", "20000", "Income");
         listHistory.add(h1);
         return "transfer";
