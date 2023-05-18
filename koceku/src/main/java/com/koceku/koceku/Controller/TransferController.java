@@ -3,12 +3,9 @@ package com.koceku.koceku.Controller;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import ch.qos.logback.core.model.Model;
-
 import com.koceku.koceku.Model.*;
-import org.springframework.ui.Model.*;
 
 @Controller
 public class TransferController {

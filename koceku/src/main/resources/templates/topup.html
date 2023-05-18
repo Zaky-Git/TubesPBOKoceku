@@ -7,9 +7,9 @@
     <!-- this is where we refer the css file from src/main/resources/static/main.css -->
     <link th:href="@{/main.css}" rel="stylesheet" />
 </head>
-
 <body class="font-poppins">
-    <div class="bg white flex flex-row items-center">
+    <div class="bg-white flex flex-row items-center h-screen">
+        <!-- Awal Bagian kiri -->
         <!-- Awal Bagian Navbar -->
         <div class="basis-[15%] align-middle border-r-[1.5px] border-[#DFE8F6]">
             <div class="flex flex-col 2xl:mt-8 xl:mt-6 gap-5 justify-center  ml-12">
@@ -23,10 +23,10 @@
                 </div>
                 <div>
                     <div class="my-auto xl:text-2xl"></div>
-                    <a href="/topup" class="my-auto xl:text-2xl">Top Up</a>
+                    <a href="/topup" class="my-auto xl:text-2xl font-bold">Top Up</a>
                 </div>
                 <div>
-                    <a href="/transfer" class="my-auto xl:text-2xl font-bold">Transfer</a>
+                    <a href="/transfer" class="my-auto xl:text-2xl">Transfer</a>
                 </div>
                 <div>
                     <a href="/payment" class="my-auto xl:text-2xl">Payment</a>
@@ -39,7 +39,9 @@
             </div>
         </div>
         <!-- Akhir Bagian Navbar  -->
-        <!-- send -->
+        <!-- Akhir bagian kiri -->
+
+        <!-- Awal Bagian kanan -->
         <div class="bg-green-300 h-screen flex flex-col w-full">
             <div class="flex flex-row mx-auto justify-center items-center w-4/5 h-screen">
                 <div class="flex flex-row">
@@ -129,8 +131,8 @@
                         </div>
                     </div>
                     <div class="bg-white flex-none  p-8">
-                        <h1 class="text-2xl font-bold mb-4 text-center">Send Money</h1>
-                        <form>
+                        <h1 class="text-2xl font-bold mb-4 text-center">Top Up</h1>
+                        <!-- <form>
                             <div class="mb-4">
                                 <label class="block text-gray-700 font-bold mb-2" for="sender">You Send</label>
                                 <input
@@ -154,13 +156,36 @@
                                 type="button">
                                 Send
                             </button>
-                        </form>
+                        </form> -->
+                        <form >
+                            <div class="mb-4">
+                              <label for="emoney">Pilih E-Money:</label>
+                              <select name="emoney" id="emoney">
+                                <option value="gopay">GoPay</option>
+                                <option value="ovo">OVO</option>
+                                <option value="dana">DANA</option>
+                                <!-- Tambahkan opsi untuk e-money lain jika diperlukan -->
+                              </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-bold mb-2" for="sender">Nominal</label>
+                                <input
+                                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="sender" type="text" placeholder="Enter Amount">
+                            </div>
+                            <button
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                            type="button">
+                            Top Up
+                        </button>
+                            </div>
+                          </form>
                     </div>
                 </div>
             </div>
 
         </div>
+        <!-- Akhir bagian kanan -->
     </div>
 </body>
-
 </html>
