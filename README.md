@@ -1,5 +1,9 @@
 # TubesPBOKoceku
 
+prerequisite :
+1. Java 17
+2. Maven sudah terinstall (ketik "mvn --version" tanpa tanda petik 2 pada cmd untuk mengetahui sudah terinstall apa belum)
+
 cara run
 1. buka terminal vscode
 2. pastikan sekarang berada pada folder koceku
