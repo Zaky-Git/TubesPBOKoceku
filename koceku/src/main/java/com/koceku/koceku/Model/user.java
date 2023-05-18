@@ -1,6 +1,6 @@
 package com.koceku.koceku.Model;
 
-public class user {
+public class User {
     private String noHp;
     private String nama;
     private String email;
