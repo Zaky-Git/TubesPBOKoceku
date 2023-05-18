@@ -14,3 +14,4 @@ cara run
 6. ketik "cd main" tanpa petik 2 lalu enter
 7. ketik "cd frontend" tanpa petik 2 lalu enter
 8. setelah berada pada folder frontend, ketik "npm run watch" tanpa petik 2  
+9. ke browser lalu ketik localhost:8080/Login
