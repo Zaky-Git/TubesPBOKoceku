@@ -63,70 +63,6 @@
                                     <!-- Loop through the data and display it in the table -->
                                     <!-- Assume the data is an array of objects with properties -->
                                     <!-- Replace this with the actual data from your controller -->
-                                    <tr class="bg-gray-100">
-                                        <td class="px-4 py-2 border">Transfer</td>
-                                        <td class="px-4 py-2 border">082178282931</td>
-                                        <td class="px-4 py-2 border">John Doe</td>
-                                        <td class="px-4 py-2 border">10.000</td>
-                                        <td class="px-4 py-2 border">Expense</td>
-                                    </tr>
-                                    <tr class="bg-gray-100">
-                                        <td class="px-4 py-2 border">Transfer</td>
-                                        <td class="px-4 py-2 border">082178282931</td>
-                                        <td class="px-4 py-2 border">John Doe</td>
-                                        <td class="px-4 py-2 border">10.000</td>
-                                        <td class="px-4 py-2 border">Expense</td>
-                                    </tr>
-                                    <tr class="bg-gray-100">
-                                        <td class="px-4 py-2 border">Transfer</td>
-                                        <td class="px-4 py-2 border">082178282931</td>
-                                        <td class="px-4 py-2 border">John Doe</td>
-                                        <td class="px-4 py-2 border">10.000</td>
-                                        <td class="px-4 py-2 border">Expense</td>
-                                    </tr>
-                                    <tr class="bg-gray-100">
-                                        <td class="px-4 py-2 border">Transfer</td>
-                                        <td class="px-4 py-2 border">082178282931</td>
-                                        <td class="px-4 py-2 border">John Doe</td>
-                                        <td class="px-4 py-2 border">10.000</td>
-                                        <td class="px-4 py-2 border">Expense</td>
-                                    </tr>
-                                    <tr class="bg-gray-100">
-                                        <td class="px-4 py-2 border">Transfer</td>
-                                        <td class="px-4 py-2 border">082178282931</td>
-                                        <td class="px-4 py-2 border">John Doe</td>
-                                        <td class="px-4 py-2 border">10.000</td>
-                                        <td class="px-4 py-2 border">Expense</td>
-                                    </tr>
-                                    <tr class="bg-gray-100">
-                                        <td class="px-4 py-2 border">Transfer</td>
-                                        <td class="px-4 py-2 border">082178282931</td>
-                                        <td class="px-4 py-2 border">John Doe</td>
-                                        <td class="px-4 py-2 border">10.000</td>
-                                        <td class="px-4 py-2 border">Expense</td>
-                                    </tr>
-                                    <tr class="bg-gray-100">
-                                        <td class="px-4 py-2 border">Transfer</td>
-                                        <td class="px-4 py-2 border">082178282931</td>
-                                        <td class="px-4 py-2 border">John Doe</td>
-                                        <td class="px-4 py-2 border">10.000</td>
-                                        <td class="px-4 py-2 border">Expense</td>
-                                    </tr>
-                                    <tr class="bg-gray-100">
-                                        <td class="px-4 py-2 border">Transfer</td>
-                                        <td class="px-4 py-2 border">082178282931</td>
-                                        <td class="px-4 py-2 border">John Doe</td>
-                                        <td class="px-4 py-2 border">10.000</td>
-                                        <td class="px-4 py-2 border">Expense</td>
-                                    </tr>
-                                    <tr class="bg-gray-100">
-                                        <td class="px-4 py-2 border">Transfer</td>
-                                        <td class="px-4 py-2 border">082178282931</td>
-                                        <td class="px-4 py-2 border">John Doe</td>
-                                        <td class="px-4 py-2 border">10.000</td>
-                                        <td class="px-4 py-2 border">Expense</td>
-                                    </tr>
-
                                 </tbody>
                             </table>
                         </div>
@@ -135,25 +71,26 @@
                         <h1 class="text-2xl font-bold mb-4 text-center">Top Up</h1>
                         <form>
                             <div class="mb-4">
-                                <label for="emoney">Pilih E-Money:</label>
-                                <select name="emoney" id="emoney">
-                                    <option value="gopay">GoPay</option>
-                                    <option value="ovo">OVO</option>
-                                    <option value="dana">DANA</option>
-                                    <!-- Tambahkan opsi untuk e-money lain jika diperlukan -->
+                                <label for="ewalletType">E-Wallet Type:</label>
+                                <select id="ewalletType" name="ewalletType">
+                                    <option value="gopay" th:value="gopay">GoPay</option>
+                                    <option value="ovo" th:value="ovo">OVO</option>
+                                    <option value="dana" th:value="dana">DANA</option>
+                                    <!-- Tambahkan opsi untuk e-wallet lain jika diperlukan -->
                                 </select>
                             </div>
                             <div class="mb-4">
-                                <label class="block text-gray-700 font-bold mb-2" for="sender">Nomor Telephone</label>
+                                <label class="block text-gray-700 font-bold mb-2" for="sender"
+                                    th:field="*{phoneNumber}">Phone Number</label>
                                 <input
                                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="sender" type="text" placeholder="Enter Amount">
+                                    type="text" placeholder="Enter Amount">
                             </div>
                             <div class="mb-4">
-                                <label class="block text-gray-700 font-bold mb-2" for="sender">Nominal</label>
+                                <label class="block text-gray-700 font-bold mb-2" for="sender">Amount</label>
                                 <input
                                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="sender" type="text" placeholder="Enter Amount">
+                                    type="text" placeholder="Enter Amount">
                             </div>
                             <button
                                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
@@ -168,7 +105,6 @@
 
     </div>
     <!-- Akhir bagian kanan -->
-    </div>
 </body>
 
 </html>

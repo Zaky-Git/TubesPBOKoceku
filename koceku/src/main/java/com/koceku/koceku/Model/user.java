@@ -1,27 +1,38 @@
 package com.koceku.koceku.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class User {
-    private String userId;
-    private String noHp;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
+    @Column(nullable = false)
     private String nama;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String phoneNumber;
-    // tambahkan atribut lain yang diperlukan
 
     // Constructor
-    public User(String userId, String email, String phoneNumber) {
+    public User(Long userId, String nama, String email, String phoneNumber) {
         this.userId = userId;
+        this.nama = nama;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
     // Getter dan Setter
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getEmail() {
@@ -34,6 +45,10 @@ public class User {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getNama() {
+        return nama;
     }
 
 }
