@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TopupController {
     @GetMapping("/topup")
-    public String topup(Model Model){
+    public String topup(Model Model) {
         return "topup";
     }
 }
