@@ -23,7 +23,7 @@ public class Ewallet {
     // Constructor
     public Ewallet(User user) {
         this.user = user;
-        this.balance = 0;
+        this.balance = 50000;
     }
 
     // Getter dan Setter
@@ -47,7 +47,6 @@ public class Ewallet {
     public void topUp(Double amount, String recipientPhoneNumber) {
         // Proses top up dengan metode pembayaran tertentu
         this.balance += amount;
-
         Transaction transaction = new Transaction(null,
                 null,
                 amount,
