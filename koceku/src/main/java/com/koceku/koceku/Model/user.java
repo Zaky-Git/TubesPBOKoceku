@@ -2,6 +2,8 @@ package com.koceku.koceku.Model;
 
 public class User {
     private String userId;
+    private String noHp;
+    private String nama;
     private String email;
     private String phoneNumber;
     // tambahkan atribut lain yang diperlukan
