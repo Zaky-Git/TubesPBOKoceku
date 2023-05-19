@@ -10,10 +10,7 @@ public class Ewallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @OneToOne
-    private User user;
+    private int id;
 
     private double balance;
 
@@ -21,18 +18,8 @@ public class Ewallet {
     private List<Transaction> transactionHistory = new ArrayList<>();
 
     // Constructor
-    public Ewallet(User user) {
-        this.user = user;
+    public Ewallet() {
         this.balance = 50000;
-    }
-
-    // Getter dan Setter
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public double getBalance() {
@@ -46,7 +33,7 @@ public class Ewallet {
     // Metode Top Up
     public void topUp(Double amount, String recipientPhoneNumber) {
         // Proses top up dengan metode pembayaran tertentu
-        this.balance += amount;
+        this.balance -= amount;
         Transaction transaction = new Transaction(null,
                 null,
                 amount,
@@ -55,8 +42,7 @@ public class Ewallet {
                 recipientPhoneNumber,
                 null,
                 null,
-                "Success",
-                this);
+                "Success");
         addTransactionToHistory(transaction);
         System.out.println("Top up successful. Current balance: " + this.balance);
     }

@@ -2,14 +2,16 @@ package com.koceku.koceku.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 
-import ch.qos.logback.core.model.Model;
+import com.koceku.koceku.Model.*;
 
 @Controller
 public class MainController {
 
     @GetMapping("/homepage")
     public String homepage(Model model) {
+
         return "homepage";
     }
 
@@ -20,11 +22,14 @@ public class MainController {
 
     @GetMapping("/dashboard")
     public String Dashboard(Model model) {
+        User user1 = new User("Stiv", "udin@gmail.com", "08272121", new Ewallet());
+        model.addAttribute("balance", user1.getEwallet().getBalance());
         return "dashboard";
     }
 
     @GetMapping("/profile")
     public String profile(Model model) {
+
         return "profile";
     }
 

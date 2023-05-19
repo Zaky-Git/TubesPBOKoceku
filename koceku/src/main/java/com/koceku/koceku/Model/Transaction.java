@@ -4,14 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long transactionId;
+    private int transactionId;
     private String senderId;
     private String recipientId;
     private double amount;
@@ -22,12 +21,8 @@ public class Transaction {
     private String recipientName;
     private String status;
 
-    @ManyToOne
-    private Ewallet ewallet;
-
     public Transaction(String senderId, String recipientId, double amount, String type,
-            String ewalletType, String phoneNumber, String senderName, String recipientName, String status,
-            Ewallet ewallet) {
+            String ewalletType, String phoneNumber, String senderName, String recipientName, String status) {
         this.senderId = senderId;
         this.recipientId = recipientId;
         this.amount = amount;
@@ -37,10 +32,9 @@ public class Transaction {
         this.senderName = senderName;
         this.recipientName = recipientName;
         this.status = status;
-        this.ewallet = ewallet;
     }
 
-    public Long getTransactionId() {
+    public int getTransactionId() {
         return this.transactionId;
     }
 
@@ -78,10 +72,6 @@ public class Transaction {
 
     public String getStatus() {
         return this.status;
-    }
-
-    public Ewallet getEwallet() {
-        return this.ewallet;
     }
 
 }

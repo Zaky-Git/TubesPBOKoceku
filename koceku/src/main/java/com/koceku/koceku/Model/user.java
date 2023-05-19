@@ -13,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private int userId;
 
     @Column(nullable = false)
     private String nama;
@@ -23,15 +23,14 @@ public class User {
     @Column(nullable = false)
     private String phoneNumber;
 
-    @OneToOne
+    @OneToOne(mappedBy = "user")
     @JoinColumn(name = "ewallet_id")
     private Ewallet ewallet;
 
     // Constructors, getters, and setters
 
     // Constructor
-    public User(Long userId, String nama, String email, String phoneNumber, Ewallet ewallet) {
-        this.userId = userId;
+    public User(String nama, String email, String phoneNumber, Ewallet ewallet) {
         this.nama = nama;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -39,7 +38,7 @@ public class User {
     }
 
     // Getter dan Setter
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -63,7 +62,4 @@ public class User {
         return ewallet;
     }
 
-    public void setEwallet(Ewallet ewallet) {
-        this.ewallet = ewallet;
-    }
 }
