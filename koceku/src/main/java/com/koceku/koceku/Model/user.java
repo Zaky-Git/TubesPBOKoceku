@@ -23,23 +23,34 @@ public class User {
     @Column(nullable = false)
     private String phoneNumber;
 
+    @Column(nullable = false)
+    private String password;
+
     @OneToOne(mappedBy = "user")
     @JoinColumn(name = "ewallet_id")
     private Ewallet ewallet;
 
+    public User() {
+    }
+
     // Constructors, getters, and setters
 
     // Constructor
-    public User(String nama, String email, String phoneNumber, Ewallet ewallet) {
+    public User(String nama, String email, String phoneNumber, String password, Ewallet ewallet) {
         this.nama = nama;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.password = password;
         this.ewallet = ewallet;
     }
 
     // Getter dan Setter
     public int getUserId() {
         return userId;
+    }
+
+    public String getPassword(){
+        return password;
     }
 
     public String getEmail() {

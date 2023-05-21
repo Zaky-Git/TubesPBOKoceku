@@ -4,11 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
-import com.koceku.koceku.Model.*;
-import com.koceku.koceku.Repositories.*;
-
 @Controller
-public class TopUp {
+public class TopupController {
 
     @GetMapping("/topup")
     public String topup(Model model) {
