@@ -49,7 +49,7 @@ public class User {
         return userId;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
