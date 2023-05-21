@@ -158,31 +158,41 @@
                         </div>
                     </div>
                     <div class="bg-white flex-none  p-8">
-                        <h1 class="text-2xl font-bold mb-4 text-center">Send Money</h1>
-                        <form>
+                        <h1 class="text-2xl font-bold mb-4 text-center">Make Payment</h1>
                             <div class="mb-4">
-                                <label class="block text-gray-700 font-bold mb-2" for="sender">You Send</label>
-                                <input
-                                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="sender" type="text" placeholder="Enter Amount">
+                                <label class="block text-gray-700 font-bold mb-2" for="amount">Amount</label>
+                                <input 
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                id="amount" type="text" placeholder="Enter amount">
                             </div>
                             <div class="mb-4">
-                                <label class="block text-gray-700 font-bold mb-2" for="recipient">To</label>
-                                <input
-                                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="recipient" type="text" placeholder="Enter recipient number">
+                                <label class="block text-gray-700 font-bold mb-2" for="recipient">Recipient</label>
+                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="recipient" type="text" placeholder="Enter recipient">
                             </div>
                             <div class="mb-4">
-                                <label class="block text-gray-700 font-bold mb-2" for="amount">Note</label>
-                                <textarea name="" id="" cols="30" rows="5"
-                                    class="appearance-none resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    placeholder="Note"></textarea>
+                                <label class="block text-gray-700 font-bold mb-2" for="Card Number">Card Number</label>
+                                <input 
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                id="Card Number" type="text" placeholder="Enter Card Number">
                             </div>
-                            <button
-                                class="cursor-pointer active:scale-95 bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] w-full active:bg-[#7859f4]"
-                                type="button">
-                                Send
-                            </button>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-bold mb-2" for="Expiry Date">Expiry Date</label>
+                                <input 
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                id="Expiry Date" type="text" placeholder="Enter Expiry Date">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-bold mb-2" for="CVV">CVV</label>
+                                <input 
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                id="CVV" type="text" placeholder="Enter CVV">
+                            </div>
+                            <div class="">
+                                <button
+                                    class="cursor-pointer active:scale-95 bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] w-full active:bg-[#7859f4]"
+                                    type="button">
+                                    Send
+                                </button>
                         </form>
                     </div>
                 </div>
