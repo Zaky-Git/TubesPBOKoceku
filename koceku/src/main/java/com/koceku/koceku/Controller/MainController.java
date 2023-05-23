@@ -47,4 +47,9 @@ public class MainController {
         return "aboutus";
     }
 
+    @GetMapping("/contactus")
+    public String contactus(Model model) {
+        return "contactus";
+    }
+
 }
