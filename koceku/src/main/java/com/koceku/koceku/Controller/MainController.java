@@ -42,4 +42,9 @@ public class MainController {
         return "transfer";
     }
 
+    @GetMapping("/aboutus")
+    public String aboutus(Model model) {
+        return "aboutus";
+    }
+
 }
