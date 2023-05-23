@@ -1,15 +1,21 @@
 package com.koceku.koceku.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
 
-import ch.qos.logback.core.model.Model;
+import com.koceku.koceku.Model.*;
+import com.koceku.koceku.Repository.UserRepository;
 
 @Controller
 public class MainController {
 
     @GetMapping("/homepage")
     public String homepage(Model model) {
+
         return "homepage";
     }
 
@@ -20,11 +26,14 @@ public class MainController {
 
     @GetMapping("/dashboard")
     public String Dashboard(Model model) {
+        User user1 = new User("Stiv", "udin@gmail.com", "08272121", "makanenak", new Ewallet());
+        model.addAttribute("balance", user1.getEwallet().getBalance());
         return "dashboard";
     }
 
     @GetMapping("/profile")
     public String profile(Model model) {
+
         return "profile";
     }
 
@@ -33,13 +42,4 @@ public class MainController {
         return "transfer";
     }
 
-    @GetMapping("/login")
-    public String Login(Model model) {
-        return "login";
-    }
-
-    @GetMapping("/signup")
-    public String Signup(Model model) {
-        return "signup";
-    }
 }
