@@ -1,32 +1,16 @@
-// package com.koceku.koceku.Service;
-// package com.koceku.Service;
-// package com.koceku.koceku;
+package com.koceku.koceku.Service;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
-// import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
-// import com.koceku.koceku.Model.Ewallet;
-// import com.koceku.koceku.Model.User;
+import com.koceku.koceku.Model.User;
+import com.koceku.koceku.Repository.UserRepository;
 
-// @Service
-// public class UserService {
+@Service
+public class UserService {
+    
+    UserRepository repo;
 
-// private UserRepository userRepository;
-
-// @Autowired
-// public UserService(UserRepository userRepository) {
-// this.userRepository = userRepository;
-// }
-
-// @Autowired
-// private EwalletRepository ewalletRepository;
-
-// @Transactional
-// public void signUp(String nama, String email, String phoneNumber) {
-// Ewallet ewallet = new Ewallet();
-// User user = new User(nama, email, phoneNumber, ewallet);
-// userRepository.save(user);
-// ewalletRepository.save(ewallet);
-// }
-// }
+    public void SignUp(User user){
+        repo.saveAndFlush(user);
+    }
+}

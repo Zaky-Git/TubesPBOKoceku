@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 import com.koceku.koceku.Model.*;
-import com.koceku.koceku.Repository.UserRepository;
 
 @Controller
 public class MainController {

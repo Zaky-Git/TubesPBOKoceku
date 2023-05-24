@@ -1,41 +1,44 @@
 package com.koceku.koceku.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinColumn;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
 
 @Entity
+@Table
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
-    @Column(nullable = false)
+    @Column(name = "user_Name")
     private String nama;
 
-    @Column(nullable = false)
+    @Column(name = "user_Email")
     private String email;
-    @Column(nullable = false)
+
+    @Column(name = "user_phoneNumber")
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column(name = "user_Password")
     private String password;
 
     @OneToOne(mappedBy = "user")
-    @JoinColumn(name = "ewallet_id")
+    @JoinColumn(name = "user_EWallet_Id")
     private Ewallet ewallet;
-
-    public User() {
-    }
 
     // Constructors, getters, and setters
 
     // Constructor
+    public User(){
+        
+    }
     public User(String nama, String email, String phoneNumber, String password, Ewallet ewallet) {
         this.nama = nama;
         this.email = email;
@@ -60,6 +63,21 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setEwallet(Ewallet ewallet) {
+        this.ewallet = ewallet;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -71,6 +89,18 @@ public class User {
 
     public Ewallet getEwallet() {
         return ewallet;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " userId='" + getUserId() + "'" +
+            ", nama='" + getNama() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", ewallet='" + getEwallet() + "'" +
+            "}";
     }
 
 }

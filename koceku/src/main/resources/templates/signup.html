@@ -15,7 +15,7 @@
         <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
             <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
                 <h1 class="mb-8 text-3xl text-center">Sign up</h1>
-                <form th:action="@{/signup}" th:object="${user}" method="post">
+                <form th:action="signup" th:object="${user}" th:method="post">
                     <input type="text" th:field="*{nama}" class="block border border-grey-light w-full p-3 rounded mb-4"
                         name="nama" placeholder="Full Name" required />
                     <input type="text" th:field="*{email}"
@@ -24,7 +24,7 @@
                     <input type="text" th:field="*{phoneNumber}"
                         class="block border border-grey-light w-full p-3 rounded mb-4" name="phoneNumber"
                         placeholder="Phone Number" required />
-                    <input type="password" th:field="*{Password}"
+                    <input type="password" th:field="*{password}"
                         class="block border border-grey-light w-full p-3 rounded mb-4" name="password"
                         placeholder="Password" required />
                     <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4"
