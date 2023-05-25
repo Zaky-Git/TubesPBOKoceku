@@ -58,9 +58,14 @@ public class MainController {
     }
 
     @GetMapping("/profile")
-    public String profile(Model model) {
-
-        return "profile";
+    public String profile(Model model, HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            model.addAttribute(user);
+            return "profile";
+        } else {
+            return "redirect:/signin";
+        }
     }
 
     @GetMapping("/transfer")

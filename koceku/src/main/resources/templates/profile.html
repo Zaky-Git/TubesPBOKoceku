@@ -94,10 +94,10 @@
                                     <p class="text-end text-gray-500">Password:</p>
                                 </div>
                                 <div id="showMode" class="flex flex-col gap-4">
-                                    <p>Adul</p>
-                                    <p>Ghazi</p>
-                                    <p>ijadshidqi@gmail.com</p>
-                                    <p>082128232131</p>
+                                    <p th:text="${user.getFirstName()}"></p>
+                                    <p th:text="${user.getLastName()}"></p>
+                                    <p th:text="${user.getEmail()}"></p>
+                                    <p th:text="${user.getPhoneNumber()}"></p>
                                     <div class="flex ">
                                         <p class="mt-1" id="password" data-password="adulijdsukangoding">
                                             ******************
