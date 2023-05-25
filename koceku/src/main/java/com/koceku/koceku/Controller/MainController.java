@@ -16,6 +16,7 @@ import com.koceku.koceku.Repository.UserRepository;
 import com.koceku.koceku.Service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
@@ -29,7 +30,7 @@ public class MainController {
     @Autowired
     EwalletRepository transactionRepo;
 
-    @GetMapping("/homepage")
+    @GetMapping("/")
     public String homepage(Model model) {
 
         return "homepage";
@@ -45,18 +46,6 @@ public class MainController {
         return "topup";
     }
 
-    @PostMapping("/signin")
-    public String trySignin(@RequestParam("email") String email, @RequestParam("password") String password,
-            Model model, HttpServletRequest request) {
-        User user = userService.findUserByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
-            request.getSession().setAttribute("user", user); // Simpan user ke dalam session
-            return "redirect:/dashboard"; // Redirect langsung ke dashboard setelah berhasil sign-in
-        } else {
-            return "redirect:/";
-        }
-    }
-
     @GetMapping("/dashboard")
     public String Dashboard(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
@@ -64,7 +53,7 @@ public class MainController {
             model.addAttribute("user", user);
             return "dashboard";
         } else {
-            return "redirect:/";
+            return "redirect:/signin";
         }
     }
 
@@ -82,32 +71,6 @@ public class MainController {
     @GetMapping("/aboutus")
     public String aboutus(Model model) {
         return "aboutus";
-    }
-
-    @GetMapping("/")
-    public String signinPage(Model model) {
-        String email = "";
-        model.addAttribute("Email", email);
-        String password = "";
-        model.addAttribute("Password", password);
-        return "signin";
-    }
-
-    @GetMapping("/signup")
-    public String signupPage(Model model) {
-        model.addAttribute("user", new User());
-        return "signup";
-    }
-
-    @PostMapping("/signup")
-    public String signupPage(@ModelAttribute("user") User user) {
-        Ewallet wallet = new Ewallet();
-
-        user.setEwallet(wallet);
-        userService.SignUp(user);
-        ewalletRepo.save(wallet);
-        System.out.println(user.toString());
-        return "redirect:/";
     }
 
 }
