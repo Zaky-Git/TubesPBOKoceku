@@ -14,7 +14,7 @@ public class Ewallet {
 
     private double balance;
 
-    @OneToMany(targetEntity = Transaction.class, cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = Transaction.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_transaction", referencedColumnName = "Id")
     private List<Transaction> transactionHistory;
 
