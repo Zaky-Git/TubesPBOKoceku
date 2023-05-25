@@ -79,67 +79,110 @@
                             <div class="flex flex-row justify-between">
                                 <h3 class="text-5 mb-4">Personal Details</h3>
                                 <div>
-                                    <a href="#edit-personal-details" data-bs-toggle="modal"
+                                    <a href="#edit-personal-details" data-bs-toggle="modal" id="editButton"
                                         class="ms-auto text-2 text-uppercase btn-link"><span class="me-1"><i
                                                 class="fas fa-edit"></i></span>Edit</a>
                                 </div>
                             </div>
                             <hr class="mx-n4 mb-4">
                             <div class="flex flex-row gap-4 my-4 justify-start px-24 py-5">
-                                <div class="flex flex-col gap-4">
-                                    <p class="text-end text-gray-500">Name:</p>
+                                <div id="columnName" class="flex flex-col gap-4">
+                                    <p class="text-end text-gray-500">First Name:</p>
+                                    <p class="text-end text-gray-500">Last Name:</p>
                                     <p class="text-end text-gray-500">Email:</p>
                                     <p class="text-gray-500">Phone Number:</p>
                                     <p class="text-end text-gray-500">Password:</p>
                                 </div>
-                                <div class="flex flex-col gap-4">
-                                    <p>Adul adul</p>
-                                    <p>sahidadul@gmail.com</p>
+                                <div id="showMode" class="flex flex-col gap-4">
+                                    <p>Adul</p>
+                                    <p>Ghazi</p>
+                                    <p>ijadshidqi@gmail.com</p>
                                     <p>082128232131</p>
-                                    <div class="flex relative">
-                                        <p class="" id="password" data-password="adulsukangoding">
-                                            *************
+                                    <div class="flex ">
+                                        <p class="mt-1" id="password" data-password="adulijdsukangoding">
+                                            ******************
                                         </p>
                                         <button id="togglePassword"
-                                            class="btn-link absolute right-0 fa-regular fa-eye pt-1 my-auto"></button>
+                                            class="btn-link  ml-2 right-0 fa-regular fa-eye my-auto"></button>
+                                    </div>
+                                </div>
+                                <div id="editMode" class="flex flex-col gap-5 hidden">
+                                    <input class="border border-gray-600 rounded-xl px-2" placeholder="Adul"
+                                        type="text">
+                                    <input class="border border-gray-600 rounded-xl px-2 mt-1" placeholder="Ghazi"
+                                        type="text">
+                                    <input class="border border-gray-600 rounded-xl px-2"
+                                        placeholder="ijadshidqi@gmail.com" type="text">
+                                    <input class="border border-gray-600 rounded-xl px-2 mt-1"
+                                        placeholder="082128232131" type="text">
+                                    <input class="border border-gray-600 rounded-xl px-2 mt-1"
+                                        placeholder="******************" type="text">
+                                    <div class="flex flex-row gap-4 mt-5">
+                                        <button id="cancelButton"
+                                            class="px-4 py-2 text-white bg-gray-500 rounded-md hover:bg-gray-600">
+                                            Cancel
+                                        </button>
+                                        <button id="saveButton"
+                                            class="px-4 py-2 bg-[#6245D5] text-white rounded-md hover:bg-[#704ff5] active:bg-[#7859f4]">
+                                            Save
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-
-                            <script>
-                                const passwordElement = document.getElementById('password');
-                                const togglePasswordButton = document.getElementById('togglePassword');
-                                const password = passwordElement.getAttribute('data-password');
-                                const passwordLength = password.length;
-                                let isPasswordVisible = false;
-
-                                togglePasswordButton.addEventListener('click', function () {
-                                    isPasswordVisible = !isPasswordVisible;
-
-                                    if (isPasswordVisible) {
-                                        passwordElement.innerText = password;
-                                        togglePasswordButton.classList.remove("fa-eye");
-                                        togglePasswordButton.classList.add("fa-eye-slash");
-                                    } else {
-                                        passwordElement.innerText = '*'.repeat(passwordLength);
-                                        togglePasswordButton.classList.remove("fa-eye-slash");
-                                        togglePasswordButton.classList.add("fa-eye");
-                                    }
-                                });
-                            </script>
-
-
                         </div>
-
                     </div>
                     <!-- akhir content transfer -->
-
-
-
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        const passwordElement = document.getElementById('password');
+        const togglePasswordButton = document.getElementById('togglePassword');
+        const password = passwordElement.getAttribute('data-password');
+        const passwordLength = password.length;
+        let isPasswordVisible = false;
+        const editButton = document.getElementById('editButton');
+        const showMode = document.getElementById('showMode');
+        const editMode = document.getElementById('editMode');
+        const columnName = document.getElementById('columnName');
+
+        const saveButton = document.getElementById("saveButton");
+
+        editButton.addEventListener('click', function () {
+            editMode.classList.remove("hidden");
+            showMode.classList.add("hidden");
+            columnName.classList.remove("gap-4");
+            columnName.classList.add("gap-6");
+            editButton.classList.add("hidden");
+
+        });
+
+        saveButton.addEventListener('click', function () {
+            editMode.classList.add("hidden");
+            showMode.classList.remove("hidden");
+            columnName.classList.add("gap-4");
+            columnName.classList.remove("gap-6");
+            editButton.classList.remove("hidden");
+        })
+
+
+
+        togglePasswordButton.addEventListener('click', function () {
+            isPasswordVisible = !isPasswordVisible;
+            if (isPasswordVisible) {
+                passwordElement.innerText = password;
+                passwordElement.classList.remove("mt-1")
+                togglePasswordButton.classList.remove("fa-eye");
+                togglePasswordButton.classList.add("fa-eye-slash");
+            } else {
+                passwordElement.innerText = '*'.repeat(passwordLength);
+                passwordElement.classList.add("mt-1")
+                togglePasswordButton.classList.remove("fa-eye-slash");
+                togglePasswordButton.classList.add("fa-eye");
+            }
+        });
+    </script>
 </body>
 
 </html>
