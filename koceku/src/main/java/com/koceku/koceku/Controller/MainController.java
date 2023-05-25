@@ -64,6 +64,11 @@ public class MainController {
         return "aboutus";
     }
 
+    @GetMapping("/contactus")
+    public String contactus(Model model) {
+        return "contactus";
+    }
+
     @GetMapping("/")
     public String signinPage(Model model) {
         return "signin";
