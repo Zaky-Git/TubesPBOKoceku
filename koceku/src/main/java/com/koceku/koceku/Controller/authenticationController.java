@@ -21,25 +21,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class authenticationController {
+public class AuthenticationController {
 
     @Autowired
     UserService userService;
 
     @Autowired
     EwalletRepository ewalletRepo;
-
-    @PostMapping("/signin")
-    public String trySignin(@RequestParam("email") String email, @RequestParam("password") String password,
-            Model model, HttpServletRequest request) {
-        User user = userService.findUserByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
-            request.getSession().setAttribute("user", user); // Simpan user ke dalam session
-            return "redirect:/dashboard"; // Redirect langsung ke dashboard setelah berhasil sign-in
-        } else {
-            return "redirect:/signin";
-        }
-    }
 
     @GetMapping("/logout")
     public String Logout(HttpServletRequest request) {
@@ -64,6 +52,18 @@ public class authenticationController {
 
     }
 
+    @PostMapping("/signin")
+    public String trySignin(@RequestParam("email") String email, @RequestParam("password") String password,
+            HttpServletRequest request) {
+        User user = userService.findUserByEmail(email);
+        if (user != null && user.getPassword().equals(password)) {
+            request.getSession().setAttribute("user", user); // Simpan user ke dalam session
+            return "redirect:/dashboard"; // Redirect langsung ke dashboard setelah berhasil sign-in
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
     @GetMapping("/signup")
     public String signupPage(Model model) {
         model.addAttribute("user", new User());
@@ -73,7 +73,6 @@ public class authenticationController {
     @PostMapping("/signup")
     public String signupPage(@ModelAttribute("user") User user) {
         Ewallet wallet = new Ewallet();
-
         user.setEwallet(wallet);
         userService.SignUp(user);
         ewalletRepo.save(wallet);

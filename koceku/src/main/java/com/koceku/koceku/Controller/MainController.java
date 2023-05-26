@@ -41,10 +41,6 @@ public class MainController {
         return "payment";
     }
 
-    @GetMapping("/topup")
-    public String topup(Model model) {
-        return "topup";
-    }
 
     @GetMapping("/dashboard")
     public String Dashboard(Model model, HttpServletRequest request) {

@@ -47,17 +47,17 @@ public class Ewallet {
     public void topUp(Double amount, String recipientPhoneNumber) {
         // Proses top up dengan metode pembayaran tertentu
         this.balance -= amount;
-        Transaction transaction = new Transaction(null,
-                null,
-                amount,
-                "Top Up",
-                null,
-                recipientPhoneNumber,
-                null,
-                null,
-                "Success",
-                "note dia");
-        addTransactionToHistory(transaction);
+        // Transaction transaction = new Transaction(null,
+        // null,
+        // amount,
+        // "Top Up",
+        // null,
+        // recipientPhoneNumber,
+        // null,
+        // null,
+        // "Success",
+        // "note dia");
+        // addTransactionToHistory(transaction);
         System.out.println("Top up successful. Current balance: " + this.balance);
     }
 
