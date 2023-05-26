@@ -52,57 +52,111 @@
     </nav>
     <style>
       .navbar-brand {
-        font-family: 'Arial', sans-serif;
+        font-family: "Arial", sans-serif;
         font-weight: bolder;
         font-size: xx-large;
       }
     </style>
     <!-- Header - set the background image for the header in the line below -->
-      <header
-        class="py-5 bg-image-full"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8N3x8fGVufDB8fHx8fA%3D%3D&w=1000&q=80');
-        "
-      >
-        <div class="text-center my-5">
-          <img
-            class="img-fluid rounded-circle mb-4"
-            src="../static/logokocekku.jpg"
-            alt="..."
-          />
-        </div>
-      </header>
+    <header
+      class="py-5 bg-image-full"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8N3x8fGVufDB8fHx8fA%3D%3D&w=1000&q=80');
+      "
+    >
+      <div class="text-center my-5">
+        <img
+          class="img-fluid rounded-circle mb-4"
+          th:src="@{logokocekku.jpg}"
+          alt="..."
+        />
+      </div>
+    </header>
     <!-- Content section-->
     <section class="py-5">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
-            <h2>Full Width Backgrounds</h2>
+            <h2>Apa itu Koceku ?</h2>
             <p class="lead">
-              A single, lightweight helper class allows you to add engaging,
-              full width background images to sections of your page.
+              Koceku adalah aplikasi berbasis web yang dirancang untuk memenuhi
+              kebutuhan tugas besar Mata Kuliah Pemrograman berbasis Objek
             </p>
             <p class="mb-0">
-              The universe is almost 14 billion years old, and, wow! Life had no
-              problem starting here on Earth! I think it would be inexcusably
-              egocentric of us to suggest that we're alone in the universe.
+              Koceku adalah aplikasi yang bergerak di bidang pembayaran digital
+              yang memungkinkan user untuk melakukan top-up, mengirim uang ke
+              sesama pengguna koceku, melakukan pembayaran kebutuhan sehari-hari
             </p>
           </div>
         </div>
       </div>
     </section>
-      
+
     <style>
       section.py-5 {
         background-color: #4ade80;
       }
-      </style>
+    </style>
+    <section class="py-4">
+      <div class="container text-center">
+        <!-- <h3>Merchant</h3> -->
+        <img
+          class="img-fluid mb-2"
+          th:src="@{logoAlfa.png}"
+          alt="..."
+          width="100"
+          height="100"
+        />
+        <img
+          class="img-fluid mb-2"
+          th:src="@{logoDana.png}"
+          alt="..."
+          width="100"
+          height="100"
+        />
+        <img
+          class="img-fluid mb-2"
+          th:src="@{logoGopay.png}"
+          alt="..."
+          width="100"
+          height="100"
+        />
+        <img
+          class="img-fluid mb-2"
+          th:src="@{logoOVO.png}"
+          alt="..."
+          width="80"
+          height="100"
+        />
+        <img
+          class="img-fluid mb-2"
+          th:src="@{logoPLN.png}"
+          alt="..."
+          width="100"
+          height="100"
+        />
+        <img
+          class="img-fluid mb-2"
+          th:src="@{logoTelkom.png}"
+          alt="..."
+          width="100"
+          height="100"
+        />
+        <style>
+          .img-fluid {
+            margin-right: 10px;
+          }
+
+          .mb-2 {
+            margin-bottom: 20px;
+          }
+        </style>
+      </div>
+    </section>
     <!-- Footer-->
-    <footer class="py-5 bg-dark h-screen bottom-0 fixed-bottom">
+    <footer class="py-5 bg-dark h-screen bottom-0">
       <div class="container">
-        <p class="m-0 text-center text-white">
-          Copyright &copy; Your Website 2023
-        </p>
+        <p class="m-0 text-center text-white">Copyright &copy; Koceku 2023</p>
       </div>
     </footer>
     <!-- Bootstrap core JS-->

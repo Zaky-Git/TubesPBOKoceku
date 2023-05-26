@@ -50,63 +50,92 @@
         </div>
       </div>
     </nav>
+    <style>
+      .navbar-brand {
+        font-family: "Arial", sans-serif;
+        font-weight: bolder;
+        font-size: xx-large;
+      }
+    </style>
     <!-- Akhir navbar -->
     <!-- Awal Content -->
+    <header class="p-4 bg-success text-white">
+      <div class="container">
+        <h1>About Us</h1>
+      </div>
+    </header>
     <div class="container">
-      <h1 class="mt-4 mb-4 text-center">About Us</h1>
+      <!-- <h1 class="mt-4 mb-4 text-center">About Us</h1> -->
       <section>
         <div class="row">
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <img src="/koceku/src/main/resources/fotoProfile/profilezaki.jpeg" class="card-img-top" alt="Developer 1">
-            <div class="card-body">
-              <h5 class="card-title">Muhammad Zaki Fathurahim</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur enim sit amet
-                erat
-                fringilla, id congue nisl tristique.</p>
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <img
+                th:src="@{profilezaki.jpeg}"
+                class="card-img-top"
+                alt="Developer 1"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Muhammad Zaky Fathurahim</h5>
+                <p class="card-text">Nama : Muhammad Zaky Fathurahim</p>
+                <p class="card-text">NIM : 1302213067</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <img
+                th:src="@{profilerisjad.jpg}"
+                class="card-img-top"
+                alt="Developer 2"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Muhammad Risjad Shidqi Febian</h5>
+                <p class="card-text">Nama : Muhammad Risjad Shidqi Febian</p>
+                <p class="card-text">NIM : 1302213045</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <img
+                th:src="@{profileghazy.jpg}"
+                class="card-img-top"
+                alt="Developer 3"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Muhammad Ghazy Fawaz Hakim</h5>
+                <p class="card-text">Nama : Muhammad Ghazy Fawaz Hakim</p>
+                <p class="card-text">NIM : 1302210027</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <img
+                th:src="@{profilesaid.jpg}"
+                class="card-img-top"
+                alt="Developer 4"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Syayid abdullah Zakaria</h5>
+
+                <p class="card-text">Nama : Syayid abdullah Zakaria</p>
+                <p class="card-text">NIM : 1302190059</p>
+              </div>
             </div>
           </div>
         </div>
-  
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <img src="/koceku/src/main/resources/fotoProfile/IMG_74619(2).jpg" class="card-img-top" alt="Developer 2">
-            <div class="card-body">
-              <h5 class="card-title">Muhammad Risjad Shidqi Febian</h5>
-              <p class="card-text">Praesent congue libero nec felis lacinia, eu gravida erat ultrices. Aliquam erat
-                volutpat.</p>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <img src="developer3.jpg" class="card-img-top" alt="Developer 3">
-            <div class="card-body">
-              <h5 class="card-title">Ghazy Fawaz</h5>
-              <p class="card-text">Vestibulum at metus a lectus euismod interdum. Nunc consequat velit id massa
-                fringilla,
-                ac aliquet sem rhoncus.</p>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <img src="developer4.jpg" class="card-img-top" alt="Developer 4">
-            <div class="card-body">
-              <h5 class="card-title">Said Iqbale</h5>
-              <p class="card-text">Sed efficitur purus id mauris lacinia, at semper nisl feugiat. Curabitur in eleifend
-                mi.</p>
-            </div>
-          </div>
-        </div>
-      </div>
       </section>
-      
-      <style>
-        
-      </style>
     </div>
     <!-- Akhir Content -->
+    <footer class="p-4 bg-dark text-white">
+      <div class="container text-center">
+        <p>&copy; 2023 Koceku. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
+</html>
