@@ -63,10 +63,7 @@ public class MainController {
         }
     }
 
-    @GetMapping("/transfer")
-    public String Transfer(Model model) {
-        return "transfer";
-    }
+
 
     @GetMapping("/aboutus")
     public String aboutus(Model model) {
