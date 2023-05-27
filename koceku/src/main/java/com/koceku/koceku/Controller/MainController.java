@@ -78,25 +78,4 @@ public class MainController {
         return "contactus";
     }
 
-    @GetMapping("/")
-    public String signinPage(Model model) {
-        return "signin";
-    }
-
-    @GetMapping("/signup")
-    public String signupPage(Model model) {
-        model.addAttribute("user", new User());
-        return "signup";
-    }
-
-    @PostMapping("/signup")
-    public String signupPage(@ModelAttribute("user") User user) {
-        Ewallet wallet = new Ewallet();
-        user.setEwallet(wallet);
-        userRepo.save(user);
-        ewalletRepo.save(wallet);
-        System.out.println(user.toString());
-        return "redirect:/";
-    }
-
 }
