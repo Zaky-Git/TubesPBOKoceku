@@ -159,6 +159,7 @@
         const columnName = document.getElementById('columnName');
 
         const saveButton = document.getElementById("saveButton");
+        const cancelButton = document.getElementById("cancelButton");
 
         editButton.addEventListener('click', function () {
             editMode.classList.remove("hidden");
@@ -170,6 +171,14 @@
         });
 
         saveButton.addEventListener('click', function () {
+            editMode.classList.add("hidden");
+            showMode.classList.remove("hidden");
+            columnName.classList.add("gap-4");
+            columnName.classList.remove("gap-6");
+            editButton.classList.remove("hidden");
+        })
+
+        cancelButton.addEventListener('click', function () {
             editMode.classList.add("hidden");
             showMode.classList.remove("hidden");
             columnName.classList.add("gap-4");
