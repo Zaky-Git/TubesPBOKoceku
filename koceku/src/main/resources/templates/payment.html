@@ -14,29 +14,40 @@
         <!-- Awal Bagian Navbar -->
         <div class="w-1/5 bg-white h-screen align-middle flex flex-col">
             <div class="text-center p-8">
-                <a href="/homepage" class="my-auto font-bold text-4xl text-[#6245D5] ">Koceku</a>
+                <a href="/" class="my-auto font-bold text-4xl text-[#6245D5] ">Koceku</a>
             </div>
             <div class="p-4 border-2">
-                <h1 class="text-center text-xl font-bold">Halo, Nama</h1>
-                <p class="text-center text-gray-600">Saldo Tersedia</p>
-                <p class="text-center text-2xl font-semibold text-green-500">Rp 500,000</p>
+                <h1 class="text-center text-xl font-bold" th:text="'Halo, ' + ${user.getFirstName()}"></h1>
+                <p class="text-center text-gray-600">Available Balance</p>
+                <p class="text-center text-2xl font-semibold text-green-500"
+                    th:text="'Rp' + ${#numbers.formatCurrency(user.getEwallet().getBalance()).substring(1)}"></p>
             </div>
             <div class="flex-1 bg-gray-100 p-4">
                 <div class="bg-white p-4 rounded-lg shadow-md">
                     <div>
-                        <h2 class="text-lg font-bold mb-2">Profil</h2>
-                        <p class="text-gray-600 mb-4">Nomor Telepon: 08123456789</p>
-                        <button class="cursor-pointer active:scale-95 ">
-                            <a href="#"
-                                class="bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] active:bg-[#7859f4]">Ubah
-                                Profil</a>
+                        <div class="flex justify-between">
+                            <div class="">
+                                <h2 class="text-lg font-bold mb-1">Notification</h2>
+                            </div>
+                            <div class="">
+                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                <lord-icon src="https://cdn.lordicon.com/psnhyobz.json" trigger="click"
+                                    colors="primary:#121331" style="width:30px;height:30px">
+                                </lord-icon>
+                            </div>
+
+                        </div>
+                        <p class="text-gray-600 mb-4" th:text="'Phone number: ' + ${user.getPhoneNumber}"></p>
+                        <button class="cursor-pointer active:scale-95 my-1" onclick="window.location.href = '/logout'">
+                            <a href=" #"
+                                class="bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] active:bg-[#7859f4]">Logout</a>
                         </button>
                     </div>
                 </div>
                 <nav class="flex p-4">
                     <div class="flex flex-col 2xl:mt-8 xl:mt-6 gap-4">
                         <a href="/dashboard"
-                            class="my-auto xl:text-2xl flex items-center hover:text-green-500 hover:scale-105">
+                            class="my-auto xl:text-2xl flex items-center hover:text-green-500 hover:scale-105 text-green-500 font-bold">
                             <i class="fas fa-chart-pie mr-2"></i>
                             Dashboard
                         </a>
@@ -51,7 +62,7 @@
                             Transfer
                         </a>
                         <a href="/payment"
-                            class="my-auto xl:text-2xl flex items-center hover:text-green-500 hover:scale-105 text-green-500 font-bold">
+                            class="my-auto xl:text-2xl flex items-center hover:text-green-500 hover:scale-105">
                             <i class="fas fa-credit-card mr-2"></i>
                             Payment
                         </a>
@@ -167,10 +178,12 @@
                                             <div class="mb-4">
                                                 <div class="relative inline-block text-left w-full">
                                                     <div class="w-full">
-                                                        <label class="block text-gray-700 font-bold mb-2 text-left w-full"
+                                                        <label
+                                                            class="block text-gray-700 font-bold mb-2 text-left w-full"
                                                             for="sender">Pilih Tagihan</label>
                                                         <div class="flex relative w-full" onclick="toggleDropdown()">
-                                                            <button th:text="${'TELKOM'}" type="button" id="selectButton"
+                                                            <button th:text="${'TELKOM'}" type="button"
+                                                                id="selectButton"
                                                                 class="inline-flex  justify-center w-full px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 ">
                                                             </button>
                                                             <i id="dropDownEwalletIcon"
@@ -191,8 +204,8 @@
                                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                                                 role="menuitem">Tagihan Listrik</a>
                                                             <a href="#" onclick="selectEWallet('TELKOM')"
-                                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                            role="menuitem">Tagihan Telfon</a>
+                                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                                role="menuitem">Tagihan Telfon</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -200,10 +213,11 @@
                                         </div>
                                     </form>
                                     <div class="mb-4">
-                                            <label class="block text-gray-700 font-bold mb-2" for="sender">Nomor Tagihan</label>
-                                            <input
-                                                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                id="sender" type="text" placeholder="1022102210">
+                                        <label class="block text-gray-700 font-bold mb-2" for="sender">Nomor
+                                            Tagihan</label>
+                                        <input
+                                            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            id="sender" type="text" placeholder="1022102210">
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 font-bold mb-2" for="sender">Nominal</label>

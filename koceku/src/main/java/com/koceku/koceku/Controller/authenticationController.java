@@ -1,5 +1,7 @@
 package com.koceku.koceku.Controller;
 
+import java.lang.ProcessBuilder.Redirect;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class MainController {
+public class AuthenticationController {
 
     @Autowired
     UserService userService;
@@ -27,60 +29,39 @@ public class MainController {
     @Autowired
     EwalletRepository ewalletRepo;
 
-    @Autowired
-    EwalletRepository transactionRepo;
-
-    @GetMapping("/")
-    public String homepage(Model model) {
-
-        return "homepage";
+    @GetMapping("/logout")
+    public String Logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        session.invalidate();
+        return "redirect:/signin";
     }
 
-    @GetMapping("/payment")
-    public String payment(Model model) {
-        return "payment";
-    }
-
-    @GetMapping("/dashboard")
-    public String Dashboard(Model model, HttpServletRequest request) {
+    @GetMapping("/signin")
+    public String signinPage(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            model.addAttribute("user", user);
-            return "dashboard";
+            return "redirect:/dashboard";
+        } else {
+            String email = "";
+            model.addAttribute("Email", email);
+            String password = "";
+            model.addAttribute("Password", password);
+            return "signin";
+        }
+
+    }
+
+    @PostMapping("/signin")
+    public String trySignin(@RequestParam("email") String email, @RequestParam("password") String password,
+            HttpServletRequest request) {
+        User user = userService.findUserByEmail(email);
+        if (user != null && user.getPassword().equals(password)) {
+            request.getSession().setAttribute("user", user); // Simpan user ke dalam session
+            return "redirect:/dashboard"; // Redirect langsung ke dashboard setelah berhasil sign-in
         } else {
             return "redirect:/signin";
         }
-    }
-
-    @GetMapping("/profile")
-    public String profile(Model model, HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("user");
-        if (user != null) {
-            model.addAttribute(user);
-            return "profile";
-        } else {
-            return "redirect:/signin";
-        }
-    }
-
-    @GetMapping("/transfer")
-    public String Transfer(Model model) {
-        return "transfer";
-    }
-
-    @GetMapping("/aboutus")
-    public String aboutus(Model model) {
-        return "aboutus";
-    }
-
-    @GetMapping("/contactus")
-    public String contactus(Model model) {
-        return "contactus";
-    }
-
-    @GetMapping("/")
-    public String signinPage(Model model) {
-        return "signin";
     }
 
     @GetMapping("/signup")
@@ -93,10 +74,9 @@ public class MainController {
     public String signupPage(@ModelAttribute("user") User user) {
         Ewallet wallet = new Ewallet();
         user.setEwallet(wallet);
-        userRepo.save(user);
+        userService.SignUp(user);
         ewalletRepo.save(wallet);
         System.out.println(user.toString());
-        return "redirect:/";
+        return "redirect:/signin";
     }
-
 }

@@ -14,22 +14,33 @@
         <!-- Awal Bagian Navbar -->
         <div class="w-1/5 bg-white h-screen align-middle flex flex-col">
             <div class="text-center p-8">
-                <a href="/homepage" class="my-auto font-bold text-4xl text-[#6245D5] ">Koceku</a>
+                <a href="/" class="my-auto font-bold text-4xl text-[#6245D5] ">Koceku</a>
             </div>
             <div class="p-4 border-2">
-                <h1 class="text-center text-xl font-bold">Halo, Nama</h1>
-                <p class="text-center text-gray-600">Saldo Tersedia</p>
-                <p class="text-center text-2xl font-semibold text-green-500">Rp 500,000</p>
+                <h1 class="text-center text-xl font-bold" th:text="'Halo, ' + ${user.getFirstName()}"></h1>
+                <p class="text-center text-gray-600">Available Balance</p>
+                <p class="text-center text-2xl font-semibold text-green-500"
+                    th:text="'Rp' + ${#numbers.formatCurrency(user.getEwallet().getBalance()).substring(1)}"></p>
             </div>
             <div class="flex-1 bg-gray-100 p-4">
                 <div class="bg-white p-4 rounded-lg shadow-md">
                     <div>
-                        <h2 class="text-lg font-bold mb-2">Profil</h2>
-                        <p class="text-gray-600 mb-4">Nomor Telepon: 08123456789</p>
-                        <button class="cursor-pointer active:scale-95 ">
-                            <a href="#"
-                                class="bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] active:bg-[#7859f4]">Ubah
-                                Profil</a>
+                        <div class="flex justify-between">
+                            <div class="">
+                                <h2 class="text-lg font-bold mb-1">Notification</h2>
+                            </div>
+                            <div class="">
+                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                <lord-icon src="https://cdn.lordicon.com/psnhyobz.json" trigger="click"
+                                    colors="primary:#121331" style="width:30px;height:30px">
+                                </lord-icon>
+                            </div>
+
+                        </div>
+                        <p class="text-gray-600 mb-4" th:text="'Phone number: ' + ${user.getPhoneNumber}"></p>
+                        <button class="cursor-pointer active:scale-95 my-1" onclick="window.location.href = '/logout'">
+                            <a href=" #"
+                                class="bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] active:bg-[#7859f4]">Logout</a>
                         </button>
                     </div>
                 </div>
@@ -93,7 +104,7 @@
                         <div class="flex-wrap">
                             <div class="w-full p-10">
                                 <h1 class="text-base">Balance</h1>
-                                <h1 th:text="'Rp ' + ${balance}"></h1>
+                                <h1></h1>
                             </div>
                         </div>
                     </div>
