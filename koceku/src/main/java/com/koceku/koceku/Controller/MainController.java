@@ -41,7 +41,6 @@ public class MainController {
         return "payment";
     }
 
-
     @GetMapping("/dashboard")
     public String Dashboard(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");

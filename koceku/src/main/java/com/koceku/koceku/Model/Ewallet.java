@@ -1,9 +1,9 @@
 package com.koceku.koceku.Model;
 
-import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Ewallet {
@@ -14,9 +14,8 @@ public class Ewallet {
 
     private double balance;
 
-    @OneToOne(targetEntity = Transaction.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_transaction", referencedColumnName = "Id")
-    private List<Transaction> transactionHistory;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "ewallet")
+    private List<Transaction> transactions;
 
     // Constructor
     public Ewallet() {
@@ -39,26 +38,38 @@ public class Ewallet {
         this.id = id;
     }
 
-    public void setTransactionHistory(List<Transaction> transactionHistory) {
-        this.transactionHistory = transactionHistory;
-    }
-
     // Metode Top Up
-    public void topUp(Double amount, String recipientPhoneNumber) {
+    public void topUp(Double amount, String recipientPhoneNumber, String note, String ewalletType, String status) {
         // Proses top up dengan metode pembayaran tertentu
-        this.balance -= amount;
-        // Transaction transaction = new Transaction(null,
-        // null,
-        // amount,
-        // "Top Up",
-        // null,
-        // recipientPhoneNumber,
-        // null,
-        // null,
-        // "Success",
-        // "note dia");
-        // addTransactionToHistory(transaction);
-        System.out.println("Top up successful. Current balance: " + this.balance);
+        if (status.equals("Success")) {
+            this.balance -= amount;
+            Transaction transaction = new Transaction(this, null,
+                    null,
+                    amount,
+                    "Top Up",
+                    ewalletType,
+                    recipientPhoneNumber,
+                    null,
+                    null,
+                    "Success",
+                    note);
+            addTransactionToHistory(transaction);
+            System.out.println("Top up successful. Current balance: " + this.balance);
+        } else {
+            Transaction transaction = new Transaction(this, null,
+                    null,
+                    amount,
+                    "Top Up",
+                    ewalletType,
+                    recipientPhoneNumber,
+                    null,
+                    null,
+                    "Failed",
+                    note);
+            addTransactionToHistory(transaction);
+            System.out.println("Top up failed. Current balance: " + this.balance);
+        }
+
     }
 
     // Metode Transfer
@@ -73,11 +84,11 @@ public class Ewallet {
     }
 
     public void addTransactionToHistory(Transaction transaction) {
-        transactionHistory.add(transaction);
-    }
-
-    public List<Transaction> getTransactionHistory() {
-        return transactionHistory;
+        if (this.transactions == null) {
+            this.transactions = new ArrayList<>();
+        }
+        transaction.setEwallet(this); // Set Ewallet as the owner of the relationship
+        this.transactions.add(transaction);
     }
 
 }

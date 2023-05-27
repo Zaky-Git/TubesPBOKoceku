@@ -28,6 +28,8 @@ public class User {
     @JoinColumn(name = "fk_ewallet", referencedColumnName = "id")
     private Ewallet ewallet;
 
+    
+
     public User() {
     }
 
