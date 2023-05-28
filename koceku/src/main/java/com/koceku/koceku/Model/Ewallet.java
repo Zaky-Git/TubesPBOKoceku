@@ -91,4 +91,12 @@ public class Ewallet {
         this.transactions.add(transaction);
     }
 
+    public List<Transaction> getTransactions() {
+        return this.transactions;
+    }
+
+    public void resetTransactions() {
+        this.transactions = new ArrayList<>();
+    }
+
 }

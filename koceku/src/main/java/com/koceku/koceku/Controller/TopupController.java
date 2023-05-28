@@ -65,10 +65,12 @@ public class TopupController {
                 model.addAttribute("user", user);
                 wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Success");
                 ewalletRepository.save(wallet);
+                wallet.resetTransactions();
                 return "redirect:/topup";
             } else {
                 wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Failed");
                 ewalletRepository.save(wallet);
+                wallet.resetTransactions();
                 model.addAttribute("insuficientBalance", "insuficientBalance");
                 return "redirect:/topup";
             }

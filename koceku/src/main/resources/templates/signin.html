@@ -6,9 +6,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- this is where we refer the css file from src/main/resources/static/main.css -->
     <link th:href="@{/main.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" />
+
 </head>
 
-<body>
+<body class="relative font-poppins">
+    <div class="absolute top-5 left-10">
+        <a href="/" class="inline-flex items-center text-blue-500 font-semibold  hover:text-blue-700">
+            <span>
+                <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M20 12H4" />
+                    <path d="M10 18L4 12M4 12L10 6M4 12L20 12" />
+                </svg>
+            </span>
+            <span class="ml-2">Back to Home</span>
+        </a>
+    </div>
     <!-- component -->
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" />
 

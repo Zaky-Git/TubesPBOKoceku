@@ -30,7 +30,7 @@ public class Transaction {
     public Transaction(Ewallet ewallet, String senderId, String recipientId, double amount, String method,
             String ewalletType, String phoneNumber, String senderName, String recipientName, String status,
             String note) {
-        this.ewallet = ewallet;
+        // this.ewallet = ewallet;
         this.senderId = senderId;
         this.recipientId = recipientId;
         this.amount = amount;
