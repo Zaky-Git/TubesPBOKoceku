@@ -9,4 +9,7 @@ import com.koceku.koceku.Model.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     public User findByEmail(String email);
+
+    public User findByPhoneNumber(String phoneNumber);
+
 }

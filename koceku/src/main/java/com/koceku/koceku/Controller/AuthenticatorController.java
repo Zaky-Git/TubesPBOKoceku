@@ -74,6 +74,7 @@ public class AuthenticatorController {
     public String signupPage(@ModelAttribute("user") User user) {
         Ewallet wallet = new Ewallet();
         user.setEwallet(wallet);
+        wallet.setUser(user);
         userService.SignUp(user);
         ewalletRepo.save(wallet);
         System.out.println(user.toString());

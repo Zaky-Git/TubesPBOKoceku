@@ -109,7 +109,7 @@
           </div>
           <div class="bg-white flex-none p-8 rounded-r-xl">
             <h1 class="text-2xl font-bold mb-4 text-center ">Send Money</h1>
-            <form>
+            <form method="post" th:action="@{/transfer}">
               <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2" for="sender">You Send</label>
                 <input
@@ -130,7 +130,7 @@
               </div>
               <button
                 class="cursor-pointer active:scale-95 bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] w-full active:bg-[#7859f4]"
-                type="button">
+                type="submit">
                 Send
               </button>
             </form>

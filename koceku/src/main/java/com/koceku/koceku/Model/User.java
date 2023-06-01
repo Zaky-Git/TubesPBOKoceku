@@ -18,7 +18,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
 
     @Column(nullable = false)
@@ -27,8 +27,6 @@ public class User {
     @OneToOne(targetEntity = Ewallet.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_ewallet", referencedColumnName = "id")
     private Ewallet ewallet;
-
-    
 
     public User() {
     }

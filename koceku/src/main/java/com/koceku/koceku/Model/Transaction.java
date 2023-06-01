@@ -1,5 +1,7 @@
 package com.koceku.koceku.Model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -8,8 +10,6 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String senderId;
-    private String recipientId;
     private double amount;
     private String method;
     private String ewalletType;
@@ -18,6 +18,8 @@ public class Transaction {
     private String recipientName;
     private String status;
     private String note;
+    private LocalDateTime transactionDate;
+    private String type;
 
     @ManyToOne
     @JoinColumn(name = "ewallet_id")
@@ -27,12 +29,10 @@ public class Transaction {
 
     }
 
-    public Transaction(Ewallet ewallet, String senderId, String recipientId, double amount, String method,
+    public Transaction(Ewallet ewallet, double amount, String method,
             String ewalletType, String phoneNumber, String senderName, String recipientName, String status,
-            String note) {
+            String note, LocalDateTime transactionDate, String type) {
         // this.ewallet = ewallet;
-        this.senderId = senderId;
-        this.recipientId = recipientId;
         this.amount = amount;
         this.method = method;
         this.ewalletType = ewalletType;
@@ -41,6 +41,8 @@ public class Transaction {
         this.recipientName = recipientName;
         this.status = status;
         this.note = note;
+        this.transactionDate = transactionDate;
+        this.type = type;
     }
 
     public Ewallet getEwallet() {
@@ -59,20 +61,12 @@ public class Transaction {
         this.id = id;
     }
 
-    public String getSenderId() {
-        return this.senderId;
+    public LocalDateTime getTransactionDate() {
+        return this.transactionDate;
     }
 
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
-    }
-
-    public String getRecipientId() {
-        return this.recipientId;
-    }
-
-    public void setRecipientId(String recipientId) {
-        this.recipientId = recipientId;
+    public void setTransactionDate(LocalDateTime transactionDate) {
+        this.transactionDate = transactionDate;
     }
 
     public double getAmount() {
@@ -137,6 +131,14 @@ public class Transaction {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }
