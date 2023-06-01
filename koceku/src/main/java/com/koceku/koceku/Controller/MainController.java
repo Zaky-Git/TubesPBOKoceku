@@ -6,17 +6,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.koceku.koceku.Model.Ewallet;
 import com.koceku.koceku.Model.User;
 import com.koceku.koceku.Repository.EwalletRepository;
 import com.koceku.koceku.Repository.UserRepository;
+import com.koceku.koceku.Service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
 
     @Autowired
-    UserRepository userRepo;
+    UserService userService;
 
     @Autowired
     EwalletRepository ewalletRepo;
@@ -24,7 +30,7 @@ public class MainController {
     @Autowired
     EwalletRepository transactionRepo;
 
-    @GetMapping("/homepage")
+    @GetMapping("/")
     public String homepage(Model model) {
 
         return "homepage";
@@ -35,55 +41,38 @@ public class MainController {
         return "payment";
     }
 
-    @GetMapping("/topup")
-    public String topup(Model model) {
-        return "topup";
-    }
-
     @GetMapping("/dashboard")
-    public String Dashboard(Model model) {
-        // User user1 = new User("Stiv", "Rangga", "udin@gmail.com", "08272121",
-        // "makanenak", new Ewallet());
-        // model.addAttribute("balance", user1.getEwallet().getBalance());
-        return "dashboard";
+    public String Dashboard(Model model, HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            model.addAttribute("user", user);
+            return "dashboard";
+        } else {
+            return "redirect:/signin";
+        }
     }
 
     @GetMapping("/profile")
-    public String profile(Model model) {
-
-        return "profile";
+    public String profile(Model model, HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            model.addAttribute(user);
+            return "profile";
+        } else {
+            return "redirect:/signin";
+        }
     }
 
-    @GetMapping("/transfer")
-    public String Transfer(Model model) {
-        return "transfer";
-    }
+
 
     @GetMapping("/aboutus")
     public String aboutus(Model model) {
         return "aboutus";
     }
 
-    @GetMapping("/")
-    public String signinPage(Model model) {
-        return "signin";
-    }
-
-    @GetMapping("/signup")
-    public String signupPage(Model model) {
-        model.addAttribute("user", new User());
-        return "signup";
-    }
-
-    @PostMapping("/signup")
-    public String signupPage(@ModelAttribute("user") User user) {
-        Ewallet wallet = new Ewallet();
-        user.setEwallet(wallet);
-        userRepo.save(user);
-        ewalletRepo.save(wallet);
-        System.out.println(user.toString());
-        return "redirect:/";
+    @GetMapping("/contactus")
+    public String contactus(Model model) {
+        return "contactus";
     }
 
 }
-
