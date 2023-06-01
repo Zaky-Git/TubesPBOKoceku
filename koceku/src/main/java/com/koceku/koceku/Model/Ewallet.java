@@ -27,7 +27,6 @@ public class Ewallet {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "ewallet")
     private List<Transaction> transactions;
 
-    // Constructor
     public Ewallet() {
         this.balance = 50000;
     }
@@ -56,9 +55,7 @@ public class Ewallet {
         this.id = id;
     }
 
-    // Metode Top Up
     public void topUp(Double amount, String recipientPhoneNumber, String note, String ewalletType, String status) {
-        // Proses top up dengan metode pembayaran tertentu
 
         if (status.equals("Success")) {
             this.balance -= amount;
@@ -95,15 +92,13 @@ public class Ewallet {
         if (this.transactions == null) {
             this.transactions = new ArrayList<>();
         }
-        transaction.setEwallet(this); // Set Ewallet as the owner of the relationship
+        transaction.setEwallet(this);
         this.transactions.add(transaction);
     }
 
     public Ewallet transferToRecipient(Double amount, Ewallet recipientEwallet, String note, String ewalletType) {
         if (this.balance >= amount) {
-            // Perform necessary validations and business logic
 
-            // Create transaction for sender
             Transaction senderTransaction = new Transaction(this, amount, "Transfer",
                     ewalletType, recipientEwallet.getUser().getPhoneNumber(),
                     this.getUser().getFirstName() + " " + this.getUser().getLastName(),
@@ -112,7 +107,6 @@ public class Ewallet {
                     LocalDateTime.now(), "Expense");
             addTransactionToHistory(senderTransaction);
 
-            // Create transaction for recipient
             Transaction recipientTransaction = new Transaction(recipientEwallet, amount, "Transfer",
                     ewalletType, this.getUser().getPhoneNumber(),
                     this.getUser().getFirstName() + " " + this.getUser().getLastName(),
@@ -121,8 +115,9 @@ public class Ewallet {
                     LocalDateTime.now(), "Income");
             recipientEwallet.addTransactionToHistory(recipientTransaction);
 
-            // Update sender's balance
             this.minusBalance(amount);
+
+            recipientEwallet.plusBalance(amount);
 
             return recipientEwallet;
         } else {
