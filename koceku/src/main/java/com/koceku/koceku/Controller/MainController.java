@@ -4,19 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-import com.koceku.koceku.Model.Ewallet;
 import com.koceku.koceku.Model.User;
 import com.koceku.koceku.Repository.EwalletRepository;
-import com.koceku.koceku.Repository.UserRepository;
 import com.koceku.koceku.Service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
@@ -34,11 +27,6 @@ public class MainController {
     public String homepage(Model model) {
 
         return "homepage";
-    }
-
-    @GetMapping("/payment")
-    public String payment(Model model) {
-        return "payment";
     }
 
     @GetMapping("/dashboard")
@@ -62,8 +50,6 @@ public class MainController {
             return "redirect:/signin";
         }
     }
-
-
 
     @GetMapping("/aboutus")
     public String aboutus(Model model) {

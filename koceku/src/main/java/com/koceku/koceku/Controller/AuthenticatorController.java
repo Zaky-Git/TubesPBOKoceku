@@ -1,7 +1,5 @@
 package com.koceku.koceku.Controller;
 
-import java.lang.ProcessBuilder.Redirect;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.koceku.koceku.Model.Ewallet;
 import com.koceku.koceku.Model.User;
 import com.koceku.koceku.Repository.EwalletRepository;
-import com.koceku.koceku.Repository.UserRepository;
 import com.koceku.koceku.Service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -57,8 +53,8 @@ public class AuthenticatorController {
             HttpServletRequest request) {
         User user = userService.findUserByEmail(email);
         if (user != null && user.getPassword().equals(password)) {
-            request.getSession().setAttribute("user", user); // Simpan user ke dalam session
-            return "redirect:/dashboard"; // Redirect langsung ke dashboard setelah berhasil sign-in
+            request.getSession().setAttribute("user", user); // Simpan user ke dalam session.
+            return "redirect:/dashboard"; // Redirect langsung ke dashboard setelah berhasil sign-in.
         } else {
             return "redirect:/signin";
         }

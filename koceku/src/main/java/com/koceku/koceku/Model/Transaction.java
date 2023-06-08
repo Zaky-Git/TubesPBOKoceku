@@ -20,6 +20,7 @@ public class Transaction {
     private String note;
     private LocalDateTime transactionDate;
     private String type;
+    private String paymentType;
 
     @ManyToOne
     @JoinColumn(name = "ewallet_id")
@@ -31,7 +32,7 @@ public class Transaction {
 
     public Transaction(Ewallet ewallet, double amount, String method,
             String ewalletType, String phoneNumber, String senderName, String recipientName, String status,
-            String note, LocalDateTime transactionDate, String type) {
+            String note, LocalDateTime transactionDate, String type, String paymentType) {
         // this.ewallet = ewallet;
         this.amount = amount;
         this.method = method;
@@ -43,6 +44,7 @@ public class Transaction {
         this.note = note;
         this.transactionDate = transactionDate;
         this.type = type;
+        this.paymentType = paymentType;
     }
 
     public Ewallet getEwallet() {

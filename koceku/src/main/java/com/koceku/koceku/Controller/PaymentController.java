@@ -18,7 +18,7 @@ import com.koceku.koceku.Repository.TransactionRepository;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-public class TopupController {
+public class PaymentController {
 
     @Autowired
     EwalletRepository ewalletRepository;
@@ -26,31 +26,29 @@ public class TopupController {
     @Autowired
     TransactionRepository transactionRepository;
 
-    @GetMapping("/topup")
-    public String topupPage(Model model, HttpServletRequest request) {
+    @GetMapping("/payment")
+    public String payment(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             model.addAttribute("user", user);
-            String phoneNumber = "";
-            model.addAttribute("phoneNumber", phoneNumber);
-            String ewallet = "";
-            model.addAttribute("ewallet", ewallet);
-            String amount = "";
-            model.addAttribute("amount", amount);
-            String note = "";
-            model.addAttribute("note", note);
-            List<Transaction> transactionTopupHistory = transactionRepository
-                    .findByEwalletIdAndMethod(user.getEwallet().getId(), "Top Up");
-            model.addAttribute("listTransactionTopup", transactionTopupHistory);
-            System.out.println(transactionTopupHistory);
-            return "topup";
+            String tagihan = "";
+            model.addAttribute("tagihan", tagihan);
+            String nomorTagihan = "";
+            model.addAttribute("nomorTagihan", nomorTagihan);
+            String nominal = "";
+            model.addAttribute("nominal", nominal);
+            List<Transaction> transactionPaymentHistory = transactionRepository
+                    .findByEwalletIdAndMethod(user.getEwallet().getId(), "Payment");
+            model.addAttribute("listTransactionTopup", transactionPaymentHistory);
+            System.out.println(transactionPaymentHistory);
+            return "payment";
         } else {
             return "redirect:/signin";
         }
     }
 
-    @PostMapping("/topup")
-    public String topup(Model model, HttpServletRequest request,
+    @PostMapping("/payment")
+    public String payment(Model model, HttpServletRequest request,
             @RequestParam("phoneNumber") String phoneNumber,
             @RequestParam("ewallet") String ewallet,
             @RequestParam("amount") String amount, @RequestParam("note") String note) {
@@ -63,13 +61,13 @@ public class TopupController {
                 wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Success");
                 ewalletRepository.save(wallet);
                 wallet.resetTransactions();
-                return "redirect:/topup";
+                return "redirect:/payment";
             } else {
                 wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Failed");
                 ewalletRepository.save(wallet);
                 wallet.resetTransactions();
                 model.addAttribute("insuficientBalance", "insuficientBalance");
-                return "redirect:/topup";
+                return "redirect:/payment";
             }
         } else if (user != null && phoneNumber == "") {
             return "redirect:/topup";
@@ -77,4 +75,5 @@ public class TopupController {
             return "redirect:/signin";
         }
     }
+
 }

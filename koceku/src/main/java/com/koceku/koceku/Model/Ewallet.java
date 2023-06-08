@@ -55,6 +55,38 @@ public class Ewallet {
         this.id = id;
     }
 
+    public void payment(Double amount, String note, String ewalletType, String status, String paymenttype) {
+        if (status.equals("Success")) {
+            this.balance -= amount;
+            Transaction transaction = new Transaction(this,
+                    amount,
+                    "Payment",
+                    ewalletType,
+                    null,
+                    null,
+                    null,
+                    "Success",
+                    note,
+                    LocalDateTime.now(), "Expense", paymenttype);
+            addTransactionToHistory(transaction);
+            System.out.println("Top up successful. Current balance: " + this.balance);
+        } else {
+            Transaction transaction = new Transaction(this,
+                    amount,
+                    "Payment",
+                    ewalletType,
+                    null,
+                    null,
+                    null,
+                    "Success",
+                    note,
+                    LocalDateTime.now(), "Expense", paymenttype);
+                    LocalDateTime.now(), "Expense", paymenttype);
+            addTransactionToHistory(transaction);
+            System.out.println("Top up failed. Current balance: " + this.balance);
+        }
+    }
+
     public void topUp(Double amount, String recipientPhoneNumber, String note, String ewalletType, String status) {
 
         if (status.equals("Success")) {
@@ -68,7 +100,7 @@ public class Ewallet {
                     null,
                     "Success",
                     note,
-                    LocalDateTime.now(), "Expense");
+                    LocalDateTime.now(), "Expense", null);
             addTransactionToHistory(transaction);
             System.out.println("Top up successful. Current balance: " + this.balance);
         } else {
@@ -81,7 +113,7 @@ public class Ewallet {
                     null,
                     "Failed",
                     note,
-                    LocalDateTime.now(), "Expense");
+                    LocalDateTime.now(), "Expense", null);
             addTransactionToHistory(transaction);
             System.out.println("Top up failed. Current balance: " + this.balance);
         }
@@ -104,7 +136,7 @@ public class Ewallet {
                     this.getUser().getFirstName() + " " + this.getUser().getLastName(),
                     recipientEwallet.getUser().getFirstName() + " " + recipientEwallet.getUser().getLastName(),
                     "Success", note,
-                    LocalDateTime.now(), "Expense");
+                    LocalDateTime.now(), "Expense", null);
             addTransactionToHistory(senderTransaction);
 
             Transaction recipientTransaction = new Transaction(recipientEwallet, amount, "Transfer",
@@ -112,7 +144,7 @@ public class Ewallet {
                     this.getUser().getFirstName() + " " + this.getUser().getLastName(),
                     recipientEwallet.getUser().getFirstName() + " " + recipientEwallet.getUser().getLastName(),
                     "Success", note,
-                    LocalDateTime.now(), "Income");
+                    LocalDateTime.now(), "Income", null);
             recipientEwallet.addTransactionToHistory(recipientTransaction);
 
             this.minusBalance(amount);
