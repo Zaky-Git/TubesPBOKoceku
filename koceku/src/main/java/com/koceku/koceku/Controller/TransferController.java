@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koceku.koceku.Model.Ewallet;
 import com.koceku.koceku.Model.User;
@@ -26,6 +27,8 @@ public class TransferController {
     public String Transfer(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         model.addAttribute("user", user);
+        model.addAttribute("nominal", (double) 0);
+        model.addAttribute("nohp", "");
         if (user != null) {
             return "transfer";
         }
@@ -36,10 +39,11 @@ public class TransferController {
     // TransferController.java
 
     @PostMapping("/transfer")
-    public String transferMethod(Model model, HttpServletRequest request) {
+    public String transferMethod(Model model, @RequestParam("nominal") Double nominal,
+            @RequestParam("nohp") String nohp, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
-        String phoneNumber = "+6289678220222";
-        double uangTransfer = 10000;
+        String phoneNumber = nohp;
+        double uangTransfer = nominal;
         if (user != null) {
             if (user.getEwallet().getBalance() >= uangTransfer) {
                 User user2 = userRepo.findByPhoneNumber(phoneNumber);
