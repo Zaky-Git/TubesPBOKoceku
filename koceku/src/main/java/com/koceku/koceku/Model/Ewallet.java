@@ -1,18 +1,13 @@
 package com.koceku.koceku.Model;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.koceku.koceku.Repository.UserRepository;
-
 import jakarta.persistence.*;
 
 @Entity
-public class Ewallet {
+public class Ewallet implements Emoney {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,6 +50,7 @@ public class Ewallet {
         this.id = id;
     }
 
+    @Override
     public void payment(Double amount, String note, String ewalletType, String status, String paymenttype) {
         if (status.equals("Success")) {
             this.balance -= amount;
@@ -86,6 +82,7 @@ public class Ewallet {
         }
     }
 
+    @Override
     public void topUp(Double amount, String recipientPhoneNumber, String note, String ewalletType, String status) {
 
         if (status.equals("Success")) {
@@ -127,7 +124,8 @@ public class Ewallet {
         this.transactions.add(transaction);
     }
 
-    public Ewallet transferToRecipient(Double amount, Ewallet recipientEwallet, String note, String ewalletType) {
+    @Override
+    public Ewallet transfer(Double amount, Ewallet recipientEwallet, String note, String ewalletType) {
         if (this.balance >= amount) {
 
             Transaction senderTransaction = new Transaction(this, amount, "Transfer",

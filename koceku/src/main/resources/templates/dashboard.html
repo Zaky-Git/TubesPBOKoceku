@@ -77,86 +77,60 @@
         </div>
 
         <!-- Akhir Bagian Navbar  -->
-        <div class="flex flex-row items-center h-screen w-full justify-evenly" style="background: #11998e;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to top, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to top, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        <div class="h-screen flex flex-col w-full" style="
+          background: #11998e; /* fallback for old browsers */
+          background: -webkit-linear-gradient(
+            to top,
+            #38ef7d,
+            #11998e
+          ); /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(
+            to top,
+            #38ef7d,
+            #11998e
+          ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         ">
-            <!-- Content -->
-            <div class="flex flex-col">
-                <!-- Awal Bagian Profile-->
-                <section id="Profile" class="pt-20">
-                    <div class="container bg-white">
-                        <div class="flex-wrap">
-                            <div class="w-full p-10">
-                                <h1 class="text-base font-semibold text-primary">
-                                    Hello, Risjad
-                                </h1>
-                                <h2>Profile</h2>
+            <div class="h-screen flex flex-col w-full">
+                <div class="flex flex-row mx-auto justify-center items-center w-4/5 h-screen">
+                    <div class="flex flex-row">
+                        <div class="bg-white shadow-md p-8 overflow-y-auto border-black rounded-xl">
+                            <h1 class="text-2xl font-bold mb-4 text-center mx-auto">History</h1>
+                            <div class="overflow-y-auto h-96">
+                                <table class="table-auto min-w-full">
+                                    <thead class="sticky top-0 z-10 bg-white">
+                                        <tr class="bg-white">
+                                            <th class="px-4 py-2">Method</th>
+                                            <th class="px-4 py-2">E-Wallet</th>
+                                            <th class="px-4 py-2">Phone Number</th>
+                                            <th class="px-4 py-2">Amount</th>
+                                            <th class="px-4 py-2">Date</th>
+                                            <th class="px-4 py-2">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:if="${noHistory != true}" th:each="t : ${listHistory}"
+                                            class="bg-gray-100">
+                                            <td class="px-4 py-2 border" th:text="${t.method}"></td>
+                                            <td class="px-4 py-2 border" th:text="${t.ewalletType}"></td>
+                                            <td class="px-4 py-2 border" th:text="${t.phoneNumber}"></td>
+                                            <td class="px-4 py-2 border"
+                                                th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1, #numbers.formatCurrency(t.amount).length() - 3)}">
+                                            </td>
+                                            <td class="px-4 py-2 border"
+                                                th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}">
+                                            </td>
+                                            <td class="px-4 py-2 border" th:text="${t.status}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </section>
-                <!-- Akhir Bagian Profile -->
-
-                <!-- Awal Bagian Wallet -->
-                <section class="pt-20">
-                    <div class="container bg-white">
-                        <div class="flex-wrap">
-                            <div class="w-full p-10">
-                                <h1 class="text-base">Balance</h1>
-                                <h1></h1>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- Akhir Bagian Wallet -->
-                <!-- Awal Bagian Wallet -->
-                <section class="pt-20">
-                    <div class="container bg-white">
-                        <div class="flex-wrap">
-                            <div class="w-full p-10">
-                                <h1 class="text-base">Balance</h1>
-                                <h1>Rp 9,000,000,000.00</h1>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- Akhir Bagian Wallet -->
-            </div>
-
-            <div class="flex flex-col">
-                <div>
-                    <!-- Awal Bagian Wallet -->
-                    <section class="pt-20">
-                        <div class="container bg-white">
-                            <div class="flex-wrap">
-                                <div class="w-full p-10">
-                                    <h1 class="text-base">Balance</h1>
-                                    <h1>Rp 9,000,000,000.00</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- Akhir Bagian Wallet -->
-                </div>
-
-                <div>
-                    <!-- Awal Bagian Wallet -->
-                    <section class="pt-20">
-                        <div class="container bg-white">
-                            <div class="flex-wrap">
-                                <div class="w-full p-10">
-                                    <h1 class="text-base">Transaction History</h1>
-                                    <h1>Rp 9,000,000,000.00</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- Akhir Bagian Wallet -->
                 </div>
             </div>
         </div>
-        <!-- Akhir Content -->
+    </div>
+    <!-- Akhir Content -->
 </body>
 
 </html>

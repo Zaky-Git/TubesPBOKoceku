@@ -49,9 +49,8 @@ public class TransferController {
                 User user2 = userRepo.findByPhoneNumber(phoneNumber);
                 if (user2 != null) {
                     Ewallet userEwallet = user.getEwallet();
-                    Ewallet recipientEwallet = userEwallet.transferToRecipient(uangTransfer, user2.getEwallet(),
+                    Ewallet recipientEwallet = userEwallet.transfer(uangTransfer, user2.getEwallet(),
                             "Transfer note", "Koceku");
-
                     if (recipientEwallet != null) {
                         ewalletRepository.save(userEwallet);
                         userEwallet.resetTransactions();
