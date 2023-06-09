@@ -39,7 +39,7 @@ public class PaymentController {
             model.addAttribute("nominal", nominal);
             List<Transaction> transactionPaymentHistory = transactionRepository
                     .findByEwalletIdAndMethod(user.getEwallet().getId(), "Payment");
-            model.addAttribute("listTransactionTopup", transactionPaymentHistory);
+            model.addAttribute("listTransactionPayment", transactionPaymentHistory);
             System.out.println(transactionPaymentHistory);
             return "payment";
         } else {

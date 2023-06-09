@@ -81,7 +81,6 @@ public class Ewallet {
                     "Success",
                     note,
                     LocalDateTime.now(), "Expense", paymenttype);
-                    LocalDateTime.now(), "Expense", paymenttype);
             addTransactionToHistory(transaction);
             System.out.println("Top up failed. Current balance: " + this.balance);
         }
