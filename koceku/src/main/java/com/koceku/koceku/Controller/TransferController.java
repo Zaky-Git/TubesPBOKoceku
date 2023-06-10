@@ -36,8 +36,6 @@ public class TransferController {
 
     }
 
-    // TransferController.java
-
     @PostMapping("/transfer")
     public String transferMethod(Model model, @RequestParam("nominal") Double nominal,
             @RequestParam("nohp") String nohp, HttpServletRequest request) {
