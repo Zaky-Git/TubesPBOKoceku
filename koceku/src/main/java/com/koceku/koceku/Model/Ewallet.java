@@ -178,5 +178,4 @@ public class Ewallet implements Emoney {
         transaction.setEwallet(this);
         this.transactions.add(transaction);
     }
-
 }
