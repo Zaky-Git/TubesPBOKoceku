@@ -50,6 +50,26 @@ public class Ewallet implements Emoney {
         this.id = id;
     }
 
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public List<Transaction> getTransactions() {
+        return this.transactions;
+    }
+
+    public void resetTransactions() {
+        this.transactions = new ArrayList<>();
+    }
+
     @Override
     public void payment(Double amount, String note, String ewalletType, String status, String paymenttype) {
         if (status.equals("Success")) {
@@ -116,14 +136,6 @@ public class Ewallet implements Emoney {
 
     }
 
-    public void addTransactionToHistory(Transaction transaction) {
-        if (this.transactions == null) {
-            this.transactions = new ArrayList<>();
-        }
-        transaction.setEwallet(this);
-        this.transactions.add(transaction);
-    }
-
     @Override
     public Ewallet transfer(Double amount, Ewallet recipientEwallet, String note, String ewalletType) {
         if (this.balance >= amount) {
@@ -155,24 +167,16 @@ public class Ewallet implements Emoney {
         }
     }
 
-    public User getUser() {
-        return this.user;
+    public void addBalance(Double amount) {
+        plusBalance(amount);
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-    }
-
-    public List<Transaction> getTransactions() {
-        return this.transactions;
-    }
-
-    public void resetTransactions() {
-        this.transactions = new ArrayList<>();
+    public void addTransactionToHistory(Transaction transaction) {
+        if (this.transactions == null) {
+            this.transactions = new ArrayList<>();
+        }
+        transaction.setEwallet(this);
+        this.transactions.add(transaction);
     }
 
 }

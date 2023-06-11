@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
+<style>
+  /* Add this CSS code */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>
+
 <body class="font-poppins">
   <div class="bg white flex flex-row items-center">
     <!-- Awal Bagian Navbar -->
@@ -81,13 +90,15 @@
           <div class="bg-white shadow-md p-8 overflow-y-auto rounded-l-xl">
             <h1 class="text-2xl font-bold mb-4">History</h1>
             <div class="overflow-y-auto h-96">
-              <table class="table-auto  min-w-full">
+              <table class="table-auto min-w-full">
                 <thead class="sticky top-0 z-10 bg-white">
                   <tr class="bg-white">
-                    <th class="px-4 py-2 ">Type</th>
-                    <th class="px-4 py-2 ">Phone Number</th>
-                    <th class="px-4 py-2 ">Name</th>
+                    <th class="px-4 py-2 ">No.</th>
+                    <th class="px-4 py-2 ">Method</th>
+                    <th class="px-4 py-2 ">Recipient Name</th>
+                    <th class="px-4 py-2 ">Recipient Phone</th>
                     <th class="px-4 py-2 ">Amount</th>
+                    <th class="px-4 py-2 ">Type</th>
                     <th class="px-4 py-2 ">Status</th>
                   </tr>
                 </thead>
@@ -95,14 +106,26 @@
                   <!-- Loop through the data and display it in the table -->
                   <!-- Assume the data is an array of objects with properties -->
                   <!-- Replace this with the actual data from your controller -->
-                  <tr class="bg-gray-100">
-                    <td class="px-4 py-2 border">Transfer</td>
-                    <td class="px-4 py-2 border">082178282931</td>
-                    <td class="px-4 py-2 border">John Doe</td>
-                    <td class="px-4 py-2 border">10.000</td>
-                    <td class="px-4 py-2 border">Expense</td>
+                <tbody>
+                  <tr th:each="transactionHistory, i : ${transactions}" class="bg-gray-100">
+                    <td th:if="${transactionHistory.type == 'Expense'}" th:text="${(i.index + 1) + '.'}"
+                      class="text-center px-4 py-2 border"></td>
+                    <td th:if="${transactionHistory.type == 'Expense'}" th:text="${transactionHistory.method}"
+                      class="px-4 py-2 border"></td>
+                    <td th:if="${transactionHistory.type == 'Expense'}" th:text="${transactionHistory.recipientName}"
+                      class="text-center px-4 py-2 border "></td>
+                    <td th:if="${transactionHistory.type == 'Expense'}" th:text="${transactionHistory.phoneNumber}"
+                      class="px-4 py-2 border"></td>
+                    <td th:if="${transactionHistory.type == 'Expense'}" class="px-4 py-2 border"
+                      th:classappend="${transactionHistory.type == 'Expense'} ? 'text-red-500' : (${transactionHistory.type == 'Income'} ? 'text-green-500' : '')"
+                      th:text="'Rp' + ${#numbers.formatCurrency(transactionHistory.amount).substring(1, #numbers.formatCurrency(transactionHistory.amount).length() - 3)}">
+                    </td>
+                    <td th:if="${transactionHistory.type == 'Expense'}" th:text="${transactionHistory.type}"
+                      class="px-4 py-2 border"></td>
+                    <td th:if="${transactionHistory.type == 'Expense'}" th:text="${transactionHistory.status}"
+                      class="px-4 py-2 border"></td>
                   </tr>
-
+                </tbody>
                 </tbody>
               </table>
             </div>
@@ -114,7 +137,7 @@
                 <label class="block text-gray-700 font-bold mb-2" for="sender">You Send</label>
                 <input
                   class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="sender" name="nominal" type="text" placeholder="Enter Amount">
+                  id="sender" name="nominal" type="number" placeholder="Enter Amount">
               </div>
               <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2" for="recipient">To</label>
@@ -124,7 +147,7 @@
               </div>
               <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2" for="amount">Note</label>
-                <textarea name="" id="" cols="30" rows="5"
+                <textarea name="note" id="" cols="30" rows="5"
                   class="appearance-none resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Note"></textarea>
               </div>

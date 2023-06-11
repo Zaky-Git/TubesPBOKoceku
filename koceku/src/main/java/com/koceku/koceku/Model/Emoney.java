@@ -9,4 +9,5 @@ public abstract interface Emoney {
 
     public abstract Ewallet transfer(Double amount, Ewallet recipientEwallet, String note, String ewalletType);
 
+    public abstract void addBalance(Double amount);
 }
