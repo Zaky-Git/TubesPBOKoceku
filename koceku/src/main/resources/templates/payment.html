@@ -84,88 +84,58 @@
             #38ef7d,
             #11998e
           ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-      >
-        <div class="h-screen flex flex-col w-full">
-          <div
-            class="flex flex-row mx-auto justify-center items-center w-4/5 h-screen"
-          >
-            <div class="flex flex-row">
-              <div
-                class="bg-white shadow-md p-8 overflow-y-auto border-black rounded-l-xl"
-              >
-                <h1 class="text-2xl font-bold mb-4">History</h1>
-                <div class="overflow-y-auto h-96">
-                  <table class="table-auto min-w-full">
-                    <thead class="sticky top-0 z-10 bg-white">
-                      <tr class="bg-white">
-                        <th class="px-4 py-2">Type</th>
-                        <th class="px-4 py-2">Tagihan</th>
-                        <th class="px-4 py-2">Nomor Tagihan</th>
-                        <th class="px-4 py-2">Amount</th>
-                        <th class="px-4 py-2">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Loop through the data and display it in the table -->
-                      <!-- Assume the data is an array of objects with properties -->
-                      <!-- Replace this with the actual data from your controller -->
-                      <tr
-                        th:each="t : ${listTransactionTopup}"
-                        class="bg-gray-100"
-                      >
-                        <td class="px-4 py-2 border" th:text="${t.method}"></td>
-                        <td
-                          class="px-4 py-2 border"
-                          th:text="${t.ewalletType}"
-                        ></td>
-                        <td
-                          class="px-4 py-2 border"
-                          th:text="${t.phoneNumber}"
-                        ></td>
-                        <td
-                          class="px-4 py-2 border"
-                          th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}"
-                        ></td>
-                        <td
-                          class="px-4 py-2 border"
-                          th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}"
-                        ></td>
-                        <td class="px-4 py-2 border" th:text="${t.status}"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+        ">
+      <div class="h-screen flex flex-col w-full">
+        <div class="flex flex-row mx-auto justify-center items-center w-4/5 h-screen">
+          <div class="flex flex-row">
+            <div class="bg-white shadow-md p-8 overflow-y-auto border-black rounded-l-xl">
+              <h1 class="text-2xl font-bold mb-4">History</h1>
+              <div class="overflow-y-auto h-96">
+                <table class="table-auto min-w-full">
+                  <thead class="sticky top-0 z-10 bg-white">
+                    <tr class="bg-white">
+                      <th class="px-4 py-2">Type</th>
+                      <th class="px-4 py-2">Tagihan</th>
+                      <th class="px-4 py-2">Nomor Tagihan</th>
+                      <th class="px-4 py-2">Amount</th>
+                      <th class="px-4 py-2">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Loop through the data and display it in the table -->
+                    <!-- Assume the data is an array of objects with properties -->
+                    <!-- Replace this with the actual data from your controller -->
+                    <tr th:each="t : ${listTransactionTopup}" class="bg-gray-100">
+                      <td class="px-4 py-2 border" th:text="${t.method}"></td>
+                      <td class="px-4 py-2 border" th:text="${t.ewalletType}"></td>
+                      <td class="px-4 py-2 border" th:text="${t.phoneNumber}"></td>
+                      <td class="px-4 py-2 border" th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}">
+                      </td>
+                      <td class="px-4 py-2 border"
+                        th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
+                      <td class="px-4 py-2 border" th:text="${t.status}"></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <!-- Awal Payment -->
-              <div class="bg-white p-8 rounded-r-xl">
-                <h1 class="text-2xl font-bold mb-4 text-center">Payment</h1>
-                <div class="flex flex-col justify-between h-96">
-                  <div>
-                    <form class="justify-start">
-                      <div class="">
-                        <div class="mb-4">
-                          <div class="relative inline-block text-left w-full">
-                            <div class="w-full">
-                              <label
-                                class="block text-gray-700 font-bold mb-2 text-left w-full"
-                                for="sender"
-                                >Pilih Tagihan</label
-                              >
-                              <div
-                                class="flex relative w-full"
-                                onclick="toggleDropdown()"
-                              >
-                                <button
-                                  th:text="${'TELKOM'}"
-                                  type="button"
-                                  id="selectButton"
-                                  class="inline-flex justify-center w-full px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
-                                ></button>
-                                <i
-                                  id="dropDownEwalletIcon"
-                                  class="fa-solid fa-chevron-down absolute right-3 transform -translate-y-1/2 top-1/2"
-                                ></i>
-                              </div>
+            </div>
+            <!-- Awal Payment -->
+            <div class="bg-white p-8 rounded-r-xl">
+              <h1 class="text-2xl font-bold mb-4 text-center">Payment</h1>
+              <div class="flex flex-col justify-between h-96">
+                <div>
+                  <form class="justify-start">
+                    <div class="">
+                      <div class="mb-4">
+                        <div class="relative inline-block text-left w-full">
+                          <div class="w-full">
+                            <label class="block text-gray-700 font-bold mb-2 text-left w-full" for="sender">Pilih
+                              Tagihan</label>
+                            <div class="flex relative w-full" onclick="toggleDropdown()">
+                              <button th:text="${'TELKOM'}" type="button" id="selectButton"
+                                class="inline-flex justify-center w-full px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"></button>
+                              <i id="dropDownEwalletIcon"
+                                class="fa-solid fa-chevron-down absolute right-3 transform -translate-y-1/2 top-1/2"></i>
                             </div>
                           </div>
                           <div id="dropdown"
@@ -188,35 +158,9 @@
                           </div>
                         </div>
                       </div>
-                    </form>
-                    <!-- Bagian yang harus di edit untuk Payment -->
-                    <div class="mb-4">
-                      <label
-                        class="block text-gray-700 font-bold mb-2"
-                        for="sender"
-                        >Nomor Tagihan</label
-                      >
-                      <input
-                        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="sender"
-                        type="text"
-                        placeholder="1022102210"
-                      />
-                    </div>
-                    <div class="mb-4">
-                      <label
-                        class="block text-gray-700 font-bold mb-2"
-                        for="sender"
-                        >Nominal</label
-                      >
-                      <input
-                        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="sender"
-                        type="text"
-                        placeholder="Rp 100,000.00"
-                      />
                     </div>
                   </form>
+                  <!-- Bagian yang harus di edit untuk Payment -->
                   <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="sender">Nomor Tagihan</label>
                     <input
@@ -239,9 +183,8 @@
                   </button>
                 </div>
               </div>
-              <!-- Akhir Payment -->
             </div>
-            <!-- Akhir Topup -->
+            <!-- Akhir Payment -->
           </div>
         </div>
       </div>
