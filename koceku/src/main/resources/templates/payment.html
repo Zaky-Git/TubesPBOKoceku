@@ -138,8 +138,8 @@
                     <thead class="sticky top-0 z-10 bg-white">
                       <tr class="bg-white">
                         <th class="px-4 py-2">Type</th>
-                        <th class="px-4 py-2">Phone Number</th>
-                        <th class="px-4 py-2">Name</th>
+                        <th class="px-4 py-2">Tagihan</th>
+                        <th class="px-4 py-2">Nomor Tagihan</th>
                         <th class="px-4 py-2">Amount</th>
                         <th class="px-4 py-2">Status</th>
                       </tr>
@@ -148,23 +148,34 @@
                       <!-- Loop through the data and display it in the table -->
                       <!-- Assume the data is an array of objects with properties -->
                       <!-- Replace this with the actual data from your controller -->
-                      <tr th:each="t : ${listTransactionTopup}" class="bg-gray-100">
+                      <tr
+                        th:each="t : ${listTransactionTopup}"
+                        class="bg-gray-100"
+                      >
                         <td class="px-4 py-2 border" th:text="${t.method}"></td>
-                        <td class="px-4 py-2 border" th:text="${t.ewalletType}"></td>
-                        <td class="px-4 py-2 border" th:text="${t.phoneNumber}"></td>
-                        <td class="px-4 py-2 border"
-                            th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}">
-                        </td>
-                        <td class="px-4 py-2 border"
-                            th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}">
-                        </td>
+                        <td
+                          class="px-4 py-2 border"
+                          th:text="${t.ewalletType}"
+                        ></td>
+                        <td
+                          class="px-4 py-2 border"
+                          th:text="${t.phoneNumber}"
+                        ></td>
+                        <td
+                          class="px-4 py-2 border"
+                          th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}"
+                        ></td>
+                        <td
+                          class="px-4 py-2 border"
+                          th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}"
+                        ></td>
                         <td class="px-4 py-2 border" th:text="${t.status}"></td>
-                    </tr>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-              <!-- Awal TopUp -->
+              <!-- Awal Payment -->
               <div class="bg-white p-8 rounded-r-xl">
                 <h1 class="text-2xl font-bold mb-4 text-center">Payment</h1>
                 <div class="flex flex-col justify-between h-96">
@@ -239,6 +250,7 @@
                         </div>
                       </div>
                     </form>
+                    <!-- Bagian yang harus di edit untuk Payment -->
                     <div class="mb-4">
                       <label
                         class="block text-gray-700 font-bold mb-2"
@@ -277,7 +289,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Akhir Topup -->
+              <!-- Akhir Payment -->
             </div>
           </div>
         </div>
