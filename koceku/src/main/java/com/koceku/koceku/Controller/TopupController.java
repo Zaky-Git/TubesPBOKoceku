@@ -39,6 +39,7 @@ public class TopupController {
             model.addAttribute("amount", amount);
             String note = "";
             model.addAttribute("note", note);
+            model.addAttribute("Expand", false);
             List<Transaction> transactionTopupHistory = transactionRepository
                     .findByEwalletIdAndMethod(user.getEwallet().getId(), "Top Up");
             model.addAttribute("listTransactionTopup", transactionTopupHistory);

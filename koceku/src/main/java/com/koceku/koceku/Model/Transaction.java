@@ -55,6 +55,14 @@ public class Transaction {
         this.ewallet = ewallet;
     }
 
+    public String getPaymentType() {
+        return this.paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
     public int getId() {
         return this.id;
     }

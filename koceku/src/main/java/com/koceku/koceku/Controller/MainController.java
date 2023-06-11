@@ -29,16 +29,6 @@ public class MainController {
         return "homepage";
     }
 
-    @GetMapping("/dashboard")
-    public String Dashboard(Model model, HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("user");
-        if (user != null) {
-            model.addAttribute("user", user);
-            return "dashboard";
-        } else {
-            return "redirect:/signin";
-        }
-    }
 
     @GetMapping("/profile")
     public String profile(Model model, HttpServletRequest request) {
