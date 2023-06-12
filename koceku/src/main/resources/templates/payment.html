@@ -124,7 +124,7 @@
               <h1 class="text-2xl font-bold mb-4 text-center">Payment</h1>
               <div class="flex flex-col justify-between h-96">
                 <div>
-                  <form class="justify-start">
+                  <form class="justify-start" method="post" th:action="@{/payment}">
                     <div class="">
                       <div class="mb-4">
                         <div class="relative inline-block text-left w-full">
@@ -159,8 +159,7 @@
                         </div>
                       </div>
                     </div>
-                  </form>
-                  <!-- Bagian yang harus di edit untuk Payment -->
+                    <!-- Bagian yang harus di edit untuk Payment -->
                   <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="sender">Nomor Tagihan</label>
                     <input
@@ -183,6 +182,8 @@
                   </button>
                 </div>
               </div>
+                  </form>
+                  
             </div>
             <!-- Akhir Payment -->
           </div>
@@ -220,18 +221,18 @@
       togglePriceDropdown();
     }
 
-      //   function submitForm() {
-      //     var selectedEWallet = document
-      //       .getElementById("dataEwallet")
-      //       .getAttribute("value");
-      //     var selectedAmount = document
-      //       .getElementById("selectedAmount")
-      //       .getAttribute("value");
-      //     var form = document.getElementById("myForm");
-      //     form.action =
-      //       "/submit?ewallet=" + selectedEWallet + "&amount=" + selectedAmount;
-      //     form.submit();
-      //   }
+        function submitForm() {
+          var selectedEWallet = document
+            .getElementById("dataEwallet")
+            .getAttribute("value");
+          var selectedAmount = document
+            .getElementById("selectedAmount")
+            .getAttribute("value");
+          var form = document.getElementById("myForm");
+          form.action =
+            "/submit?ewallet=" + selectedEWallet + "&amount=" + selectedAmount;
+          form.submit();
+        }
   </script>
 </body>
 

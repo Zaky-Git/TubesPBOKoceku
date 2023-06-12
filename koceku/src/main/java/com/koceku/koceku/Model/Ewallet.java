@@ -71,7 +71,7 @@ public class Ewallet implements Emoney {
     }
 
     @Override
-    public void payment(Double amount, String note, String ewalletType, String status, String paymenttype) {
+    public void payment(Double amount, String note, String ewalletType, String status, String paymenttype, String nomortagihan) {
         if (status.equals("Success")) {
             this.balance -= amount;
             Transaction transaction = new Transaction(this,
@@ -83,7 +83,7 @@ public class Ewallet implements Emoney {
                     null,
                     "Success",
                     note,
-                    LocalDateTime.now(), "Expense", paymenttype);
+                    LocalDateTime.now(), "Expense", paymenttype, nomortagihan);
             addTransactionToHistory(transaction);
             System.out.println("Top up successful. Current balance: " + this.balance);
         } else {
@@ -96,7 +96,7 @@ public class Ewallet implements Emoney {
                     null,
                     "Success",
                     note,
-                    LocalDateTime.now(), "Expense", paymenttype);
+                    LocalDateTime.now(), "Expense", paymenttype, nomortagihan);
             addTransactionToHistory(transaction);
             System.out.println("Top up failed. Current balance: " + this.balance);
         }
