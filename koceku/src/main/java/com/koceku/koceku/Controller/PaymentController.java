@@ -31,12 +31,12 @@ public class PaymentController {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             model.addAttribute("user", user);
-            String tagihan = "";
-            model.addAttribute("tagihan", tagihan);
             String nomorTagihan = "";
             model.addAttribute("nomorTagihan", nomorTagihan);
-            String nominal = "";
-            model.addAttribute("nominal", nominal);
+            String amount = "";
+            model.addAttribute("amount", amount);
+            String paymentType = "";
+            model.addAttribute("paymentType",paymentType);
             List<Transaction> transactionPaymentHistory = transactionRepository
                     .findByEwalletIdAndMethod(user.getEwallet().getId(), "Payment");
             model.addAttribute("listTransactionPayment", transactionPaymentHistory);
@@ -47,38 +47,31 @@ public class PaymentController {
         }
     }
 
-    // @PostMapping("/payment")
-    // public String payment(Model model, HttpServletRequest request,
-    //         @RequestParam("phoneNumber") String phoneNumber,
-    //         @RequestParam("ewallet") String ewallet,
-    //         @RequestParam("amount") String amount, @RequestParam("note") String note) {
-    //     User user = (User) request.getSession().getAttribute("user");
-    //     double amountNoMoneyFormat = Double.parseDouble(amount.replace("Rp", "").replace(",", ""));
-    //     if (user != null && phoneNumber != "") {
-    //         Ewallet wallet = user.getEwallet();
-    //         if (wallet.getBalance() >= amountNoMoneyFormat) {
-    //             model.addAttribute("user", user);
-    //             wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Success");
-    //             ewalletRepository.save(wallet);
-    //             wallet.resetTransactions();
-    //             return "redirect:/payment";
-    //         } else {
-    //             wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Failed");
-    //             ewalletRepository.save(wallet);
-    //             wallet.resetTransactions();
-    //             model.addAttribute("insuficientBalance", "insuficientBalance");
-    //             return "redirect:/payment";
-    //         }
-    //     } else if (user != null && phoneNumber == "") {
-    //         return "redirect:/topup";
-    //     } else {
-    //         return "redirect:/signin";
-    //     }
-    // }
-
-    @PostMapping
-    public String payment(Model model){
-        
+    @PostMapping("/payment")
+    public String payment(Model model, HttpServletRequest request,
+            @RequestParam("nomorTagihan") String nomorTagihan,
+            @RequestParam("amount") String amount, @RequestParam("paymentType") String paymentType) {
+        User user = (User) request.getSession().getAttribute("user");
+        double amountNoMoneyFormat = Double.parseDouble(amount.replace("Rp", "").replace(",", ""));
+        if (user!= null && nomorTagihan != null){
+            Ewallet wallet = user.getEwallet();
+            if(wallet.getBalance() >= amountNoMoneyFormat){
+                model.addAttribute("user", user);
+                wallet.payment(paymentType, nomorTagihan, "Success", amountNoMoneyFormat);
+                ewalletRepository.save(wallet);
+                wallet.resetTransactions();
+                return "redirect:/payment";
+            }else{
+                wallet.payment(paymentType, nomorTagihan, "Failed", amountNoMoneyFormat);
+                ewalletRepository.save(wallet);
+                wallet.resetTransactions();
+                model.addAttribute("insuficientBalance", "insuficientBalance");
+                return "redirect:/payment";
+            }
+        }else if(user != null &&  nomorTagihan == ""){
+            return "redirect:/topup";
+        }else{
+            return "redirect:/signin";
+        }
     }
-
 }

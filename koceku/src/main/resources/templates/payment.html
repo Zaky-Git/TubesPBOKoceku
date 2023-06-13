@@ -105,12 +105,11 @@
                     <!-- Loop through the data and display it in the table -->
                     <!-- Assume the data is an array of objects with properties -->
                     <!-- Replace this with the actual data from your controller -->
-                    <tr th:each="t : ${listTransactionTopup}" class="bg-gray-100">
-                      <td class="px-4 py-2 border" th:text="${t.method}"></td>
-                      <td class="px-4 py-2 border" th:text="${t.ewalletType}"></td>
-                      <td class="px-4 py-2 border" th:text="${t.phoneNumber}"></td>
-                      <td class="px-4 py-2 border" th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}">
-                      </td>
+                    <tr th:each="t : ${listTransactionPayment}" class="bg-gray-100">
+                      <td class="px-4 py-2 border" th:text="${t.type}"></td>
+                      <td class="px-4 py-2 border" th:text="${t.paymentType}"></td>
+                      <td class="px-4 py-2 border" th:text="${t.nomorTagihan}"></td>
+                      <td class="px-4 py-2 border" th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}"></td>
                       <td class="px-4 py-2 border"
                         th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
                       <td class="px-4 py-2 border" th:text="${t.status}"></td>
@@ -123,8 +122,9 @@
             <div class="bg-white p-8 rounded-r-xl">
               <h1 class="text-2xl font-bold mb-4 text-center">Payment</h1>
               <div class="flex flex-col justify-between h-96">
-                <div>
+                <div class="h-full"> 
                   <form class="justify-start" method="post" th:action="@{/payment}" id="myForm">
+                    <!-- Awal Drop Down -->
                     <div>
                       <div class="mb-4">
                         <div class="relative inline-block text-left w-full">
@@ -136,22 +136,24 @@
                                 class="inline-flex justify-center w-full px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"></button>
                               <i id="dropDownEwalletIcon"
                                 class="fa-solid fa-chevron-down absolute right-3 transform -translate-y-1/2 top-1/2"></i>
+                              <input type="text" name="paymentType" class="hidden" id="datatipeTagihan" th:value="${'TELKOM'}">
                             </div>
                           </div>
                           <div id="dropdown"
                             class="hidden absolute z-10 right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
-                            <div class="py-1 z-10" role="menu" aria-orientation="vertical"
+                            <div class="py-1 z-10" role="menu" 
+                              aria-orientation="vertical"
                               aria-labelledby="options-menu">
-                              <a href="#" onclick="selectEWallet('PLN')"
+                              <a href="#" onclick="selectTagihan('PLN')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                 role="menuitem">Listrik PLN</a>
-                              <a href="#" onclick="selectEWallet('PBB')"
+                              <a href="#" onclick="selectTagihan('PBB')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                 role="menuitem">PBB</a>
-                              <a href="#" onclick="selectEWallet('PLN')"
+                              <a href="#" onclick="selectTagihan('PLN')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                 role="menuitem">Tagihan Listrik</a>
-                              <a href="#" onclick="selectEWallet('TELKOM')"
+                              <a href="#" onclick="selectTagihan('TELKOM')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                 role="menuitem">Tagihan Telfon</a>
                             </div>
@@ -159,18 +161,18 @@
                         </div>
                       </div>
                     </div>
-                    <!-- Bagian yang harus di edit untuk Payment -->
+                    <!-- Batas Drop Down -->
                   <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="sender">Nomor Tagihan</label>
                     <input
                       class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="sender" type="text" placeholder="1022102210" />
+                      id="sender" type="text" placeholder="1022102210" name="nomorTagihan"  />
                   </div>
                   <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="sender">Nominal</label>
                     <input
                       class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="sender" type="text" placeholder="Rp 100,000.00" />
+                      id="sender" type="text" placeholder="Enter Nominal" name="amount" />
                   </div>
                 </div>
 
@@ -201,7 +203,7 @@
       dropdown.classList.toggle("hidden");
     }
 
-    function selectEWallet(value) {
+    function selectTagihan(value) {
       var selectButton = document.getElementById("selectButton");
       selectButton.innerText = value;
       toggleDropdown();
@@ -215,22 +217,16 @@
       priceDropdown.classList.toggle("hidden");
     }
 
-    function selectPrice(value) {
-      var priceButton = document.getElementById("priceButton");
-      priceButton.innerText = value;
-      togglePriceDropdown();
-    }
-
         function submitForm() {
-          var selectedEWallet = document
-            .getElementById("dataEwallet")
+          var selectedPaymentType = document
+            .getElementById("datatipeTagihan")
             .getAttribute("value");
           var selectedAmount = document
             .getElementById("selectedAmount")
             .getAttribute("value");
           var form = document.getElementById("myForm");
           form.action =
-            "/submit?ewallet=" + selectedEWallet + "&amount=" + selectedAmount;
+            "/submit?ewallet=" + selectedPaymentType + "&amount=" + selectedAmount;
           form.submit();
         }
   </script>
