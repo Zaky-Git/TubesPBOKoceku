@@ -47,33 +47,38 @@ public class PaymentController {
         }
     }
 
-    @PostMapping("/payment")
-    public String payment(Model model, HttpServletRequest request,
-            @RequestParam("phoneNumber") String phoneNumber,
-            @RequestParam("ewallet") String ewallet,
-            @RequestParam("amount") String amount, @RequestParam("note") String note) {
-        User user = (User) request.getSession().getAttribute("user");
-        double amountNoMoneyFormat = Double.parseDouble(amount.replace("Rp", "").replace(",", ""));
-        if (user != null && phoneNumber != "") {
-            Ewallet wallet = user.getEwallet();
-            if (wallet.getBalance() >= amountNoMoneyFormat) {
-                model.addAttribute("user", user);
-                wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Success");
-                ewalletRepository.save(wallet);
-                wallet.resetTransactions();
-                return "redirect:/payment";
-            } else {
-                wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Failed");
-                ewalletRepository.save(wallet);
-                wallet.resetTransactions();
-                model.addAttribute("insuficientBalance", "insuficientBalance");
-                return "redirect:/payment";
-            }
-        } else if (user != null && phoneNumber == "") {
-            return "redirect:/topup";
-        } else {
-            return "redirect:/signin";
-        }
+    // @PostMapping("/payment")
+    // public String payment(Model model, HttpServletRequest request,
+    //         @RequestParam("phoneNumber") String phoneNumber,
+    //         @RequestParam("ewallet") String ewallet,
+    //         @RequestParam("amount") String amount, @RequestParam("note") String note) {
+    //     User user = (User) request.getSession().getAttribute("user");
+    //     double amountNoMoneyFormat = Double.parseDouble(amount.replace("Rp", "").replace(",", ""));
+    //     if (user != null && phoneNumber != "") {
+    //         Ewallet wallet = user.getEwallet();
+    //         if (wallet.getBalance() >= amountNoMoneyFormat) {
+    //             model.addAttribute("user", user);
+    //             wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Success");
+    //             ewalletRepository.save(wallet);
+    //             wallet.resetTransactions();
+    //             return "redirect:/payment";
+    //         } else {
+    //             wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Failed");
+    //             ewalletRepository.save(wallet);
+    //             wallet.resetTransactions();
+    //             model.addAttribute("insuficientBalance", "insuficientBalance");
+    //             return "redirect:/payment";
+    //         }
+    //     } else if (user != null && phoneNumber == "") {
+    //         return "redirect:/topup";
+    //     } else {
+    //         return "redirect:/signin";
+    //     }
+    // }
+
+    @PostMapping
+    public String payment(Model model){
+        
     }
 
 }
