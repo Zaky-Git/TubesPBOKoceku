@@ -98,6 +98,7 @@
                       <th class="px-4 py-2">Tagihan</th>
                       <th class="px-4 py-2">Nomor Tagihan</th>
                       <th class="px-4 py-2">Amount</th>
+                      <th class="px-4 py-2">Date</th>
                       <th class="px-4 py-2">Status</th>
                     </tr>
                   </thead>
@@ -110,8 +111,7 @@
                       <td class="px-4 py-2 border" th:text="${t.paymentType}"></td>
                       <td class="px-4 py-2 border" th:text="${t.nomorTagihan}"></td>
                       <td class="px-4 py-2 border" th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}"></td>
-                      <td class="px-4 py-2 border"
-                        th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
+                      <td class="px-4 py-2 border" th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
                       <td class="px-4 py-2 border" th:text="${t.status}"></td>
                     </tr>
                   </tbody>
@@ -134,7 +134,7 @@
                             <div class="flex relative w-full" onclick="toggleDropdown()">
                               <button th:text="${'TELKOM'}" type="button" id="selectButton"
                                 class="inline-flex justify-center w-full px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"></button>
-                              <i id="dropDownEwalletIcon"
+                              <i id="dropDownTagihanIcon"
                                 class="fa-solid fa-chevron-down absolute right-3 transform -translate-y-1/2 top-1/2"></i>
                               <input type="text" name="paymentType" class="hidden" id="datatipeTagihan" th:value="${'TELKOM'}">
                             </div>
@@ -146,16 +146,16 @@
                               aria-labelledby="options-menu">
                               <a href="#" onclick="selectTagihan('PLN')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">Listrik PLN</a>
+                                role="menuitem" th:value="${'PLN'}">Listrik PLN</a>
                               <a href="#" onclick="selectTagihan('PBB')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">PBB</a>
+                                role="menuitem" th:value="${'PBB'}">PBB</a>
                               <a href="#" onclick="selectTagihan('PLN')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">Tagihan Listrik</a>
+                                role="menuitem" th:value="${'PLN'}">Tagihan Listrik</a>
                               <a href="#" onclick="selectTagihan('TELKOM')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">Tagihan Telfon</a>
+                                role="menuitem" th:value="${'TELKOM'}">Tagihan Telfon</a>
                             </div>
                           </div>
                         </div>
@@ -197,7 +197,7 @@
   <script>
     function toggleDropdown() {
       var dropdown = document.getElementById("dropdown");
-      var iconDropdown = document.getElementById("dropDownEwalletIcon");
+      var iconDropdown = document.getElementById("dropDownTagihanIcon");
       iconDropdown.classList.toggle("fa-chevron-down");
       iconDropdown.classList.toggle("fa-chevron-up");
       dropdown.classList.toggle("hidden");
@@ -206,8 +206,14 @@
     function selectTagihan(value) {
       var selectButton = document.getElementById("selectButton");
       selectButton.innerText = value;
+      document.getElementById('datatipeTagihan').value = value;
       toggleDropdown();
     }
+
+    // function selectTagihan(value){
+    //   document.getElementById('datatipeTagihan').value = value;
+    //   toggleDropdown();
+    // }
 
     function togglePriceDropdown() {
       var priceDropdown = document.getElementById("priceDropdown");

@@ -78,7 +78,7 @@ public class Ewallet implements Emoney {
             addTransactionToHistory(transaction);
             System.out.println("Payment successful. Current balance: " + this.balance);
         } else {
-            Transaction transaction = new Transaction(null, amount, "Payment", null, null, null, null, status, null, LocalDateTime.now(), "Failed", tipeTagihan, noTagihan);
+            Transaction transaction = new Transaction(null, 0, "Payment", null, null, null, null, status, null, LocalDateTime.now(), "Failed", tipeTagihan, noTagihan);
             addTransactionToHistory(transaction);
             System.out.println("Payment failed. Current balance: " + this.balance);
         }
