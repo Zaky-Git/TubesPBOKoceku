@@ -94,36 +94,49 @@
               <div class="flex flex-row justify-between">
                 <h3 class="text-5 mb-4">Personal Details</h3>
                 <div>
-                  <a href="#edit-personal-details" data-bs-toggle="modal" id="editButton"
-                    class="ms-auto text-2 text-uppercase btn-link"><span class="me-1"><i
+                  <a data-bs-toggle="modal" onclick="editProfile()" id="editButton"
+                    class="ms-auto text-2 text-uppercase btn-link cursor-pointer"><span class="me-1"><i
                         class="fas fa-edit"></i></span>Edit</a>
                 </div>
               </div>
-              <form action="">
+              <form th:action="@{/editProfile}" method="post">
                 <hr class="mx-n4 mb-4" />
                 <div class="flex flex-row gap-4 my-4 justify-start px-24 py-5">
                   <div id="columnName" class="flex flex-col gap-4">
                     <p class="text-end p-3 text-gray-500">First Name:</p>
                     <p class="text-end p-3 text-gray-500">Last Name:</p>
                     <p class="text-end p-3 text-gray-500">Email:</p>
-                    <p class="text-gray-500 p-3">Phone Number:</p>
-                    <p class="text-end p-3 text-gray-500">Password:</p>
+                    <p class="text-gray-500 p-3 text-end">Phone Number:</p>
+                    <p id="passwordLabel" class="text-end p-3 text-gray-500" style="display: none;">Password:</p>
+                    <p id="passwordConfirmationLabel" class="text-end p-3 text-gray-500" style="display: none;">Password
+                      Confirmation:</p>
                   </div>
                   <div id="showMode" class="flex flex-col gap-4">
-                    <input class="p-3" name="firstName" th:value="${user.getFirstName()}" type="text" disabled>
-                    <input class="p-3" name="lastName" th:value="${user.getLastName()}" type="text" disabled>
-                    <input class="p-3" name="email" th:value="${user.getEmail()}" type="text" disabled>
-                    <input class="p-3" name="phoneNumber" th:value="${user.getPhoneNumber()}" type="text" disabled>
-                    <input class="p-3" name="password" th:value="${user.getPassword()}" type="text" disabled>
+                    <input id="firstName" class="p-3 rounded-lg" name="firstName" th:value="${user.getFirstName()}"
+                      type="text" disabled />
+                    <input id="lastName" class="p-3 rounded-lg" name="lastName" th:value="${user.getLastName()}"
+                      type="text" disabled />
+                    <input id="email" class="p-3 rounded-lg" name="email" th:value="${user.getEmail()}" type="text"
+                      disabled />
+                    <input id="phoneNumber" class="p-3 rounded-lg" name="phoneNumber"
+                      th:value="${user.getPhoneNumber()}" type="text" disabled />
+                    <input placeholder="your password" id="password" class="p-3 rounded-lg" style="display: none;"
+                      name="password" type="text" />
+                    <input placeholder="Confirm password" id="passwordConfirmation" class="p-3 rounded-lg"
+                      style="display: none;" name="passwordConfirmation" type="text" />
                   </div>
                 </div>
                 <div class="flex justify-center mb-8">
-                  <button style="display: none;"
-                    class="mx-5 border-2 font-semibold  border-green-500 px-5 py-2 text-green-500 rounded-xl cursor-pointer active:scale-95  hover:text-green-600 hover:border-green-600"
-                    id="cancelButton" type="button">Cancel</button>
-                  <button style="display: none;"
-                    class="mx-5 border-2 bg-green-600 font-semibold border-green-600 px-8 py-2 text-white  rounded-xl hover:bg-green-700 active:border-green-800 cursor-pointer active:scale-95 active:bg-green-800"
-                    id="saveButton">Save</button>
+                  <button style="display: none"
+                    class="mx-5 border-2 font-semibold border-green-500 px-5 py-2 text-green-500 rounded-xl cursor-pointer active:scale-95 hover:text-green-600 hover:border-green-600"
+                    id="cancelButton" onclick="cancelEdit()" type="button">
+                    Cancel
+                  </button>
+                  <button type="submit" style="display: none"
+                    class="mx-5 border-2 bg-green-600 font-semibold border-green-600 px-8 py-2 text-white rounded-xl hover:bg-green-700 active:border-green-800 cursor-pointer active:scale-95 active:bg-green-800"
+                    id="saveButton">
+                    Save
+                  </button>
                 </div>
               </form>
             </div>
@@ -134,7 +147,61 @@
     </div>
   </div>
   <script>
+    var editButton = document.getElementById("editButton");
+    var cancelButton = document.getElementById("cancelButton");
+    var saveButton = document.getElementById("saveButton");
 
+    var firstName = document.getElementById("firstName");
+    var lastName = document.getElementById("lastName");
+    var email = document.getElementById("email");
+    var phoneNumber = document.getElementById("phoneNumber");
+    var password = document.getElementById("password");
+    var passwordConfirmation = document.getElementById("passwordConfirmation");
+    var passwordLabel = document.getElementById("passwordLabel");
+    var passwordConfirmationLabel = document.getElementById("passwordConfirmationLabel");
+
+    var tempFirstName = firstName.value;
+    var tempLastName = lastName.value;
+    var tempEmail = email.value;
+    var tempPassword = password.value;
+    var tempPhoneNumber = phoneNumber.value;
+
+    function editProfile() {
+      if (firstName.disabled) {
+        firstName.disabled = false;
+        lastName.disabled = false;
+        email.disabled = false;
+        phoneNumber.disabled = false;
+        password.style.display = "inline-block";
+        passwordLabel.style.display = "inline-block"
+        passwordConfirmation.style.display = "inline-block";
+        passwordConfirmationLabel.style.display = "inline-block";
+        firstName.style.backgroundColor = "";
+        cancelButton.style.display = "inline-block";
+        saveButton.style.display = "inline-block";
+        editButton.style.display = "none";
+      }
+    }
+
+    function cancelEdit() {
+      firstName.value = tempFirstName;
+      lastName.value = tempLastName;
+      email.value = tempEmail;
+      phoneNumber.value = tempPhoneNumber;
+      firstName.disabled = true;
+      lastName.disabled = true;
+      email.disabled = true;
+      password.value = "";
+      passwordConfirmation.value = "";
+      phoneNumber.disabled = true;
+      password.style.display = "none";
+      passwordLabel.style.display = "none"
+      passwordConfirmation.style.display = "none";
+      passwordConfirmationLabel.style.display = "none";
+      cancelButton.style.display = "none";
+      saveButton.style.display = "none";
+      editButton.style.display = "inline-block";
+    }
   </script>
 </body>
 

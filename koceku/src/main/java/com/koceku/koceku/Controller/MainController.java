@@ -29,18 +29,6 @@ public class MainController {
         return "homepage";
     }
 
-
-    @GetMapping("/profile")
-    public String profile(Model model, HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("user");
-        if (user != null) {
-            model.addAttribute(user);
-            return "profile";
-        } else {
-            return "redirect:/signin";
-        }
-    }
-
     @GetMapping("/aboutus")
     public String aboutus(Model model) {
         return "aboutus";
