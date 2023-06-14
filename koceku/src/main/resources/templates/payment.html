@@ -94,6 +94,7 @@
                 <table class="table-auto min-w-full">
                   <thead class="sticky top-0 z-10 bg-white">
                     <tr class="bg-white">
+                      <th class="px-4 py-2">No.</th>
                       <th class="px-4 py-2">Type</th>
                       <th class="px-4 py-2">Tagihan</th>
                       <th class="px-4 py-2">Nomor Tagihan</th>
@@ -106,12 +107,15 @@
                     <!-- Loop through the data and display it in the table -->
                     <!-- Assume the data is an array of objects with properties -->
                     <!-- Replace this with the actual data from your controller -->
-                    <tr th:each="t : ${listTransactionPayment}" class="bg-gray-100">
+                    <tr th:each="t, i : ${listTransactionPayment}" class="bg-gray-100">
+                      <td class="px-4 py-2 border text-center" th:text="${i.count} + '.'"></td>
                       <td class="px-4 py-2 border" th:text="${t.type}"></td>
                       <td class="px-4 py-2 border" th:text="${t.paymentType}"></td>
                       <td class="px-4 py-2 border" th:text="${t.nomorTagihan}"></td>
-                      <td class="px-4 py-2 border" th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}"></td>
-                      <td class="px-4 py-2 border" th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
+                      <td class="px-4 py-2 border" th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}">
+                      </td>
+                      <td class="px-4 py-2 border"
+                        th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
                       <td class="px-4 py-2 border" th:text="${t.status}"></td>
                     </tr>
                   </tbody>
@@ -122,7 +126,7 @@
             <div class="bg-white p-8 rounded-r-xl">
               <h1 class="text-2xl font-bold mb-4 text-center">Payment</h1>
               <div class="flex flex-col justify-between h-96">
-                <div class="h-full"> 
+                <div class="h-full">
                   <form class="justify-start" method="post" th:action="@{/payment}" id="myForm">
                     <!-- Awal Drop Down -->
                     <div>
@@ -136,13 +140,13 @@
                                 class="inline-flex justify-center w-full px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"></button>
                               <i id="dropDownTagihanIcon"
                                 class="fa-solid fa-chevron-down absolute right-3 transform -translate-y-1/2 top-1/2"></i>
-                              <input type="text" name="paymentType" class="hidden" id="datatipeTagihan" th:value="${'TELKOM'}">
+                              <input type="text" name="paymentType" class="hidden" id="datatipeTagihan"
+                                th:value="${'TELKOM'}">
                             </div>
                           </div>
                           <div id="dropdown"
                             class="hidden absolute z-10 right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
-                            <div class="py-1 z-10" role="menu" 
-                              aria-orientation="vertical"
+                            <div class="py-1 z-10" role="menu" aria-orientation="vertical"
                               aria-labelledby="options-menu">
                               <a href="#" onclick="selectTagihan('PLN')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
@@ -162,20 +166,19 @@
                       </div>
                     </div>
                     <!-- Batas Drop Down -->
-                  <div class="mb-4">
-                    <label class="block text-gray-700 font-bold mb-2" for="sender">Nomor Tagihan</label>
-                    <input
-                      class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="sender" type="text" placeholder="1022102210" name="nomorTagihan"  />
-                  </div>
-                  <div class="mb-4">
-                    <label class="block text-gray-700 font-bold mb-2" for="sender">Nominal</label>
-                    <input
-                      class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="sender" type="text" placeholder="Enter Nominal" name="amount" />
-                  </div>
+                    <div class="mb-4">
+                      <label class="block text-gray-700 font-bold mb-2" for="sender">Nomor Tagihan</label>
+                      <input
+                        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="sender" type="text" placeholder="1022102210" name="nomorTagihan" />
+                    </div>
+                    <div class="mb-4">
+                      <label class="block text-gray-700 font-bold mb-2" for="sender">Nominal</label>
+                      <input
+                        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="sender" type="text" placeholder="Enter Nominal" name="amount" />
+                    </div>
                 </div>
-
                 <div class="">
                   <button
                     class="cursor-pointer active:scale-95 bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] w-full active:bg-[#7859f4]"
@@ -183,9 +186,9 @@
                     Pay
                   </button>
                 </div>
+                </form>
               </div>
-                  </form>
-                  
+
             </div>
             <!-- Akhir Payment -->
           </div>
@@ -218,18 +221,18 @@
       priceDropdown.classList.toggle("hidden");
     }
 
-        function submitForm() {
-          var selectedPaymentType = document
-            .getElementById("datatipeTagihan")
-            .getAttribute("value");
-          var selectedAmount = document
-            .getElementById("selectedAmount")
-            .getAttribute("value");
-          var form = document.getElementById("myForm");
-          form.action =
-            "/submit?ewallet=" + selectedPaymentType + "&amount=" + selectedAmount;
-          form.submit();
-        }
+    function submitForm() {
+      var selectedPaymentType = document
+        .getElementById("datatipeTagihan")
+        .getAttribute("value");
+      var selectedAmount = document
+        .getElementById("selectedAmount")
+        .getAttribute("value");
+      var form = document.getElementById("myForm");
+      form.action =
+        "/submit?ewallet=" + selectedPaymentType + "&amount=" + selectedAmount;
+      form.submit();
+    }
   </script>
 </body>
 

@@ -27,11 +27,11 @@ public class DashboardController {
             model.addAttribute("user", user);
             List<Transaction> listHistory = transactionRepo.findByEwalletId(user.getEwallet().getId());
             if (listHistory.isEmpty()) {
-                Collections.reverse(listHistory);
                 model.addAttribute("listHistory", listHistory);
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboard";
             } else {
+                Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
                 return "dashboard";
@@ -46,13 +46,14 @@ public class DashboardController {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             model.addAttribute("user", user);
-            List<Transaction> listHistory = transactionRepo.findByEwalletId(user.getEwallet().getId());
+            List<Transaction> listHistory = transactionRepo.findByEwalletIdAndStatus(user.getEwallet().getId(),
+                    "success");
             if (listHistory.isEmpty()) {
-                Collections.reverse(listHistory);
                 model.addAttribute("listHistory", listHistory);
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboardSuccess";
             } else {
+                Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
                 return "dashboardSuccess";
@@ -67,13 +68,14 @@ public class DashboardController {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             model.addAttribute("user", user);
-            List<Transaction> listHistory = transactionRepo.findByEwalletId(user.getEwallet().getId());
+            List<Transaction> listHistory = transactionRepo.findByEwalletIdAndStatus(user.getEwallet().getId(),
+                    "Failed");
             if (listHistory.isEmpty()) {
-                Collections.reverse(listHistory);
                 model.addAttribute("listHistory", listHistory);
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboardFailed";
             } else {
+                Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
                 return "dashboardFailed";
@@ -88,13 +90,13 @@ public class DashboardController {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             model.addAttribute("user", user);
-            List<Transaction> listHistory = transactionRepo.findByEwalletId(user.getEwallet().getId());
+            List<Transaction> listHistory = transactionRepo.findByEwalletIdAndType(user.getEwallet().getId(), "Income");
             if (listHistory.isEmpty()) {
-                Collections.reverse(listHistory);
                 model.addAttribute("listHistory", listHistory);
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboardIncome";
             } else {
+                Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
                 return "dashboardIncome";
@@ -109,13 +111,14 @@ public class DashboardController {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             model.addAttribute("user", user);
-            List<Transaction> listHistory = transactionRepo.findByEwalletId(user.getEwallet().getId());
+            List<Transaction> listHistory = transactionRepo.findByEwalletIdAndType(user.getEwallet().getId(),
+                    "Expense");
             if (listHistory.isEmpty()) {
-                Collections.reverse(listHistory);
                 model.addAttribute("listHistory", listHistory);
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboardExpense";
             } else {
+                Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
                 return "dashboardExpense";

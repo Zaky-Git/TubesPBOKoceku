@@ -133,19 +133,25 @@
                                     <tbody>
                                         <tr th:if="${noHistory != true}" th:each="t, i : ${listHistory}"
                                             class="bg-gray-100">
-                                            <td class="px-4 py-2 border text-center" th:text="${i.count} + '.'"></td>
-                                            <td class="px-4 py-2 border" th:text="${t.method}"></td>
-                                            <td class="px-4 py-2 border" th:text="${t.ewalletType}"></td>
-                                            <td class="px-4 py-2 border" th:text="${t.phoneNumber}"></td>
-                                            <td class="px-4 py-2 border"
+                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border text-center"
+                                                th:text="${i.count} + '.'"></td>
+                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
+                                                th:text="${t.method}"></td>
+                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
+                                                th:text="${t.ewalletType}"></td>
+                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
+                                                th:text="${t.phoneNumber}"></td>
+                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
                                                 th:classappend="${t.type == 'Expense'} ? 'text-red-500' : (${t.type == 'Income'} ? 'text-green-500' : '')"
                                                 th:text="'Rp' + ${#numbers.formatCurrency(t.amount).substring(1, #numbers.formatCurrency(t.amount).length() - 3)}">
                                             </td>
-                                            <td class="px-4 py-2 border"
+                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
                                                 th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}">
                                             </td>
-                                            <td class="px-4 py-2 border" th:text="${t.type}"></td>
-                                            <td class="px-4 py-2 border" th:text="${t.status}"></td>
+                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
+                                                th:text="${t.type}"></td>
+                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
+                                                th:text="${t.status}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

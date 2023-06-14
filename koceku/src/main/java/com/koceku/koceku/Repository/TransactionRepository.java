@@ -14,4 +14,8 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
 
     List<Transaction> findByEwalletId(int ewalletId);
 
+    List<Transaction> findByEwalletIdAndStatus(int id, String status);
+
+    List<Transaction> findByEwalletIdAndType(int id, String type);
+
 }

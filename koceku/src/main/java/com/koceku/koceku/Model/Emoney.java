@@ -2,7 +2,6 @@ package com.koceku.koceku.Model;
 
 public abstract interface Emoney {
 
-    // public abstract void payment(Double amount, String note, String ewalletType, String status, String paymenttype);
     public abstract void payment(String tipeTagihan, String noTagihan, String Status, Double amount);
 
     public abstract void topUp(Double amount, String recipientPhoneNumber, String note, String ewalletType,

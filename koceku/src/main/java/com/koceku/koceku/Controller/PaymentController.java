@@ -1,5 +1,6 @@
 package com.koceku.koceku.Controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,10 @@ public class PaymentController {
             String amount = "";
             model.addAttribute("amount", amount);
             String paymentType = "";
-            model.addAttribute("paymentType",paymentType);
+            model.addAttribute("paymentType", paymentType);
             List<Transaction> transactionPaymentHistory = transactionRepository
                     .findByEwalletIdAndMethod(user.getEwallet().getId(), "Payment");
+            Collections.reverse(transactionPaymentHistory);
             model.addAttribute("listTransactionPayment", transactionPaymentHistory);
             System.out.println(transactionPaymentHistory);
             return "payment";
@@ -53,24 +55,24 @@ public class PaymentController {
             @RequestParam("amount") String amount, @RequestParam("paymentType") String paymentType) {
         User user = (User) request.getSession().getAttribute("user");
         double amountNoMoneyFormat = Double.parseDouble(amount.replace("Rp", "").replace(",", ""));
-        if (user!= null && nomorTagihan != null){
+        if (user != null && nomorTagihan != null) {
             Ewallet wallet = user.getEwallet();
-            if(wallet.getBalance() >= amountNoMoneyFormat){
+            if (wallet.getBalance() >= amountNoMoneyFormat) {
                 model.addAttribute("user", user);
                 wallet.payment(paymentType, nomorTagihan, "Success", amountNoMoneyFormat);
                 ewalletRepository.save(wallet);
                 wallet.resetTransactions();
                 return "redirect:/payment";
-            }else{
+            } else {
                 wallet.payment(paymentType, nomorTagihan, "Failed", amountNoMoneyFormat);
                 ewalletRepository.save(wallet);
                 wallet.resetTransactions();
                 model.addAttribute("insuficientBalance", "insuficientBalance");
                 return "redirect:/payment";
             }
-        }else if(user != null &&  nomorTagihan == ""){
+        } else if (user != null && nomorTagihan == "") {
             return "redirect:/topup";
-        }else{
+        } else {
             return "redirect:/signin";
         }
     }
