@@ -50,7 +50,7 @@ public class TopupController {
         }
     }
 
-    @PostMapping("/topup")
+    @PostMapping("/doTopup")
     public String topup(Model model, HttpServletRequest request,
             @RequestParam("phoneNumber") String phoneNumber,
             @RequestParam("ewallet") String ewallet,
@@ -64,12 +64,13 @@ public class TopupController {
                 wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Success");
                 ewalletRepository.save(wallet);
                 wallet.resetTransactions();
+                model.addAttribute("insuficientBalance", false);
                 return "redirect:/topup";
             } else {
                 wallet.topUp(amountNoMoneyFormat, phoneNumber, note, ewallet, "Failed");
                 ewalletRepository.save(wallet);
                 wallet.resetTransactions();
-                model.addAttribute("insuficientBalance", "insuficientBalance");
+                model.addAttribute("insuficientBalance", true);
                 return "redirect:/topup";
             }
         } else if (user != null && phoneNumber == "") {

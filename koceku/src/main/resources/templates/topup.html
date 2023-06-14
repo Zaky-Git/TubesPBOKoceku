@@ -106,7 +106,7 @@
                                 <table class="table-auto min-w-full">
                                     <thead class="sticky top-0 z-10 bg-white">
                                         <tr class="bg-white">
-                                            <th class="px-4 py-2">No</th>
+                                            <th class="px-4 py-2">No.</th>
                                             <th class="px-4 py-2">Method</th>
                                             <th class="px-4 py-2">Wallet</th>
                                             <th class="px-4 py-2">Phone Number</th>
@@ -140,7 +140,7 @@
                             <div class="flex flex-col h-96 w-80">
                                 <div class="h-full">
                                     <form class="flex flex-col justify-between h-full" method="post"
-                                        th:action="@{/topup}" id="myForm">
+                                        th:action="@{/doTopup}" id="myForm">
                                         <div>
                                             <div class="mb-4">
                                                 <label class="block text-gray-700 font-bold mb-2" for="sender">Phone
@@ -252,7 +252,7 @@
                                             <button
                                                 class="cursor-pointer active:scale-95 bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] w-full active:bg-[#7859f4]"
                                                 type="submit">
-                                                Send
+                                                Pay
                                             </button>
                                         </div>
                                     </form>

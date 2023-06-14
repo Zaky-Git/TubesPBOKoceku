@@ -134,57 +134,7 @@
     </div>
   </div>
   <script>
-    const passwordElement = document.getElementById("password");
-    const togglePasswordButton = document.getElementById("togglePassword");
-    const password = passwordElement.getAttribute("data-password");
-    const passwordLength = password.length;
-    let isPasswordVisible = false;
-    const editButton = document.getElementById("editButton");
-    const showMode = document.getElementById("showMode");
-    const editMode = document.getElementById("editMode");
-    const columnName = document.getElementById("columnName");
 
-    const saveButton = document.getElementById("saveButton");
-    const cancelButton = document.getElementById("cancelButton");
-
-    editButton.addEventListener("click", function () {
-      editMode.classList.remove("hidden");
-      showMode.classList.add("hidden");
-      columnName.classList.remove("gap-4");
-      columnName.classList.add("gap-6");
-      editButton.classList.add("hidden");
-    });
-
-    saveButton.addEventListener("click", function () {
-      editMode.classList.add("hidden");
-      showMode.classList.remove("hidden");
-      columnName.classList.add("gap-4");
-      columnName.classList.remove("gap-6");
-      editButton.classList.remove("hidden");
-    });
-
-    cancelButton.addEventListener("click", function () {
-      editMode.classList.add("hidden");
-      showMode.classList.remove("hidden");
-      columnName.classList.add("gap-4");
-      columnName.classList.remove("gap-6");
-      editButton.classList.remove("hidden");
-    });
-
-    togglePasswordButton.addEventListener("click", function () {
-      isPasswordVisible = !isPasswordVisible;
-      if (isPasswordVisible) {
-        passwordElement.innerText = password;
-        passwordElement.classList.remove("mt-1");
-        togglePasswordButton.classList.remove("fa-eye");
-        togglePasswordButton.classList.add("fa-eye-slash");
-      } else {
-        passwordElement.innerText = "*".repeat(passwordLength);
-        passwordElement.classList.add("mt-1");
-        togglePasswordButton.classList.remove("fa-eye-slash");
-        togglePasswordButton.classList.add("fa-eye");
-      }
-    });
   </script>
 </body>
 

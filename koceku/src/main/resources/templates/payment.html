@@ -95,11 +95,12 @@
                   <thead class="sticky top-0 z-10 bg-white">
                     <tr class="bg-white">
                       <th class="px-4 py-2">No.</th>
-                      <th class="px-4 py-2">Type</th>
+                      <th class="px-4 py-2">Method</th>
                       <th class="px-4 py-2">Tagihan</th>
                       <th class="px-4 py-2">Nomor Tagihan</th>
                       <th class="px-4 py-2">Amount</th>
                       <th class="px-4 py-2">Date</th>
+                      <th class="px-4 py-2">Type</th>
                       <th class="px-4 py-2">Status</th>
                     </tr>
                   </thead>
@@ -109,13 +110,17 @@
                     <!-- Replace this with the actual data from your controller -->
                     <tr th:each="t, i : ${listTransactionPayment}" class="bg-gray-100">
                       <td class="px-4 py-2 border text-center" th:text="${i.count} + '.'"></td>
-                      <td class="px-4 py-2 border" th:text="${t.type}"></td>
+                      <td class="px-4 py-2 border" th:text="${t.method}"></td>
                       <td class="px-4 py-2 border" th:text="${t.paymentType}"></td>
                       <td class="px-4 py-2 border" th:text="${t.nomorTagihan}"></td>
-                      <td class="px-4 py-2 border" th:text="${'-Rp' + #numbers.formatCurrency(t.amount).substring(1)}">
+                      <td class="px-4 py-2 border"
+                        th:classappend="${t.type == 'Expense'} ? 'text-red-500' : (${t.type == 'Income'} ? 'text-green-500' : '')"
+                        th:text="'Rp' + ${#numbers.formatCurrency(t.amount).substring(1, #numbers.formatCurrency(t.amount).length() - 3)}">
                       </td>
                       <td class="px-4 py-2 border"
-                        th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
+                        th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}">
+                      </td>
+                      <td class="px-4 py-2 border" th:text="${t.type}"></td>
                       <td class="px-4 py-2 border" th:text="${t.status}"></td>
                     </tr>
                   </tbody>

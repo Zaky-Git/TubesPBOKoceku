@@ -97,22 +97,22 @@
                         <div class="bg-white p-8 flex flex-col justify-center align-middle rounded-l-xl">
                             <i class="gg-filters mb-6 mx-auto"></i>
                             <ul class="flex flex-col gap-5 ">
-                                <li class=" hover:text-green-500 cursor-pointer">
+                                <li class="hover:text-green-500 cursor-pointer">
                                     <a href="dashboard">No Filter</a>
                                 </li>
-                                <li class="hover:text-green-500 cursor-pointer">
+                                <li class="hover:text-green-500 cursor-pointer ">
                                     <a href="dashboardSuccess">Success</a>
                                 </li>
-                                <li class="hover:text-green-500 cursor-pointer ">
+                                <li class="hover:text-green-500 cursor-pointer">
                                     <a href="dashboardFailed">Failed</a>
                                 </li>
-                                <li class="text-green-500 cursor-pointer font-bold">
+                                <li class="hover:text-green-500 cursor-pointer">
                                     <a href="dashboardExpense">Expense</a>
                                 </li>
                                 <li class="hover:text-green-500 cursor-pointer ">
                                     <a href="dashboardIncome">Income</a>
                                 </li>
-                                <li class="hover:text-green-500 cursor-pointer ">
+                                <li class="cursor-pointer text-green-500  font-bold ">
                                     <a href="dashboardPayment">Payment</a>
                                 </li>
                             </ul>
@@ -125,8 +125,8 @@
                                         <tr class="bg-white">
                                             <th class="px-4 py-2">No.</th>
                                             <th class="px-4 py-2">Method</th>
-                                            <th class="px-4 py-2">E-Wallet</th>
-                                            <th class="px-4 py-2">Phone Number</th>
+                                            <th class="px-4 py-2">Tagihan</th>
+                                            <th class="px-4 py-2">Nomor Tagihan</th>
                                             <th class="px-4 py-2">Amount</th>
                                             <th class="px-4 py-2">Date</th>
                                             <th class="px-4 py-2">Type</th>
@@ -136,25 +136,19 @@
                                     <tbody>
                                         <tr th:if="${noHistory != true}" th:each="t, i : ${listHistory}"
                                             class="bg-gray-100">
-                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border text-center"
-                                                th:text="${i.count} + '.'"></td>
-                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
-                                                th:text="${t.method}"></td>
-                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
-                                                th:text="${t.ewalletType}"></td>
-                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
-                                                th:text="${t.phoneNumber}"></td>
-                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
+                                            <td class="px-4 py-2 border text-center" th:text="${i.count} + '.'"></td>
+                                            <td class="px-4 py-2 border" th:text="${t.method}"></td>
+                                            <td class="px-4 py-2 border" th:text="${t.paymentType}"></td>
+                                            <td class="px-4 py-2 border" th:text="${t.nomorTagihan}"></td>
+                                            <td class="px-4 py-2 border"
                                                 th:classappend="${t.type == 'Expense'} ? 'text-red-500' : (${t.type == 'Income'} ? 'text-green-500' : '')"
                                                 th:text="'Rp' + ${#numbers.formatCurrency(t.amount).substring(1, #numbers.formatCurrency(t.amount).length() - 3)}">
                                             </td>
-                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
+                                            <td class="px-4 py-2 border"
                                                 th:text="${#temporals.format(t.transactionDate, 'yyyy-MM-dd HH:mm')}">
                                             </td>
-                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
-                                                th:text="${t.type}"></td>
-                                            <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
-                                                th:text="${t.status}"></td>
+                                            <td class="px-4 py-2 border" th:text="${t.type}"></td>
+                                            <td class="px-4 py-2 border" th:text="${t.status}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

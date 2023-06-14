@@ -127,4 +127,26 @@ public class DashboardController {
             return "redirect:/signin";
         }
     }
+
+    @GetMapping("/dashboardPayment")
+    public String DashboardPayment(Model model, HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            model.addAttribute("user", user);
+            List<Transaction> listHistory = transactionRepo.findByEwalletIdAndMethod(user.getEwallet().getId(),
+                    "Payment");
+            if (listHistory.isEmpty()) {
+                model.addAttribute("listHistory", listHistory);
+                model.addAttribute("noHistory", (boolean) true);
+                return "dashboardPayment";
+            } else {
+                Collections.reverse(listHistory);
+                model.addAttribute("noHistory", (boolean) false);
+                model.addAttribute("listHistory", listHistory);
+                return "dashboardPayment";
+            }
+        } else {
+            return "redirect:/signin";
+        }
+    }
 }
