@@ -31,6 +31,32 @@ public class Transaction {
 
     }
 
+    // transfer
+    public Transaction(double amount, String method, String status,
+            LocalDateTime transactionDate, String type, String paymentType, String nomorTagihan) {
+        this.amount = amount;
+        this.method = method;
+        this.status = status;
+        this.transactionDate = transactionDate;
+        this.type = type;
+        this.paymentType = paymentType;
+        this.nomorTagihan = nomorTagihan;
+    }
+
+    // topup
+    public Transaction(Ewallet ewallet, double amount, String method,
+            String ewalletType, String phoneNumber, String status,
+            String note, LocalDateTime transactionDate, String type) {
+        this.amount = amount;
+        this.method = method;
+        this.ewalletType = ewalletType;
+        this.phoneNumber = phoneNumber;
+        this.status = status;
+        this.note = note;
+        this.transactionDate = transactionDate;
+        this.type = type;
+    }
+
     public Transaction(Ewallet ewallet, double amount, String method,
             String ewalletType, String phoneNumber, String senderName, String recipientName, String status,
             String note, LocalDateTime transactionDate, String type, String paymentType, String nomorTagihan) {
@@ -48,12 +74,14 @@ public class Transaction {
         this.nomorTagihan = nomorTagihan;
     }
 
-    public String nomorTagihan(){
+    public String nomorTagihan() {
         return this.nomorTagihan;
     }
-    public void setnomorTagihan(String nomorTagihan){
+
+    public void setnomorTagihan(String nomorTagihan) {
         this.nomorTagihan = nomorTagihan;
     }
+
     public Ewallet getEwallet() {
         return ewallet;
     }

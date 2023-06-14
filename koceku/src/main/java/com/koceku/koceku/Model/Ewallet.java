@@ -74,11 +74,13 @@ public class Ewallet implements Emoney {
     public void payment(String tipeTagihan, String noTagihan, String status, Double amount) {
         if (status.equals("Success")) {
             this.minusBalance(amount);
-            Transaction transaction = new Transaction(null, amount, "Payment", null, null, null, null, status, null, LocalDateTime.now(), "Expense", tipeTagihan, noTagihan);
+            Transaction transaction = new Transaction(amount, "Payment", status,
+                    LocalDateTime.now(), "Expense", tipeTagihan, noTagihan);
             addTransactionToHistory(transaction);
             System.out.println("Payment successful. Current balance: " + this.balance);
         } else {
-            Transaction transaction = new Transaction(null, 0, "Payment", null, null, null, null, status, null, LocalDateTime.now(), "Expense", tipeTagihan, noTagihan);
+            Transaction transaction = new Transaction(amount, "Payment", status,
+                    LocalDateTime.now(), "Expense", tipeTagihan, noTagihan);
             addTransactionToHistory(transaction);
             System.out.println("Payment failed. Current balance: " + this.balance);
         }
@@ -93,17 +95,13 @@ public class Ewallet implements Emoney {
                 amount,
                 "Top Up",
                 ewalletType,
-                recipientPhoneNumber, // phoneNumber tidak digunakan pada top up
-                null, // senderName tidak digunakan pada top up
-                null, // recipientName tidak digunakan pada top up
+                recipientPhoneNumber,
                 status,
                 note,
                 LocalDateTime.now(),
-                "Expense", // Mengubah tipe transaksi menjadi "Income"
-                null, // paymentType tidak digunakan pada top up
-                null); // nomorTagihan tidak digunakan pada top up
+                "Expense");
         addTransactionToHistory(transaction);
-        
+
         if (status.equals("Success")) {
             System.out.println("Top up successful. Current balance: " + this.balance);
         } else {
@@ -114,9 +112,16 @@ public class Ewallet implements Emoney {
     @Override
     public Ewallet transfer(Double amount, Ewallet recipientEwallet, String note, String ewalletType) {
         if (this.balance >= amount) {
-            Transaction senderTransaction = new Transaction(this, amount, "Transfer", ewalletType, recipientEwallet.getUser().getPhoneNumber(), this.getUser().getFirstName() + " " + this.getUser().getLastName(), recipientEwallet.getUser().getFirstName() + " " + recipientEwallet.getUser().getLastName(), "Success", note, LocalDateTime.now(), "Expense", null, null);
+            Transaction senderTransaction = new Transaction(this, amount, "Transfer", ewalletType,
+                    recipientEwallet.getUser().getPhoneNumber(),
+                    this.getUser().getFirstName() + " " + this.getUser().getLastName(),
+                    recipientEwallet.getUser().getFirstName() + " " + recipientEwallet.getUser().getLastName(),
+                    "Success", note, LocalDateTime.now(), "Expense", null, null);
             addTransactionToHistory(senderTransaction);
-            Transaction recipientTransaction = new Transaction(recipientEwallet, amount, "Transfer", ewalletType, this.getUser().getPhoneNumber(), this.getUser().getFirstName() + " " + this.getUser().getLastName(), recipientEwallet.getUser().getFirstName() + " " + recipientEwallet.getUser().getLastName(), "Success", note, LocalDateTime.now(), "Income", null, null);
+            Transaction recipientTransaction = new Transaction(recipientEwallet, amount, "Transfer", ewalletType,
+                    this.getUser().getPhoneNumber(), this.getUser().getFirstName() + " " + this.getUser().getLastName(),
+                    recipientEwallet.getUser().getFirstName() + " " + recipientEwallet.getUser().getLastName(),
+                    "Success", note, LocalDateTime.now(), "Income", null, null);
             recipientEwallet.addTransactionToHistory(recipientTransaction);
             this.minusBalance(amount);
             recipientEwallet.plusBalance(amount);
