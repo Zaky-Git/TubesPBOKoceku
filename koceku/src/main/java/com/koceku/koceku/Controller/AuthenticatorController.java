@@ -40,9 +40,11 @@ public class AuthenticatorController {
             return "redirect:/dashboard";
         } else {
             String email = "";
+            // model.addAttribute("gagalEmail", false);
             model.addAttribute("Email", email);
             String password = "";
             model.addAttribute("Password", password);
+            // model.addAttribute("gagalPass", false);
             return "signin";
         }
 
@@ -50,12 +52,14 @@ public class AuthenticatorController {
 
     @PostMapping("/signin")
     public String trySignin(@RequestParam("email") String email, @RequestParam("password") String password,
-            HttpServletRequest request) {
+            HttpServletRequest request, Model model) {
         User user = userService.findUserByEmail(email);
         if (user != null && user.getPassword().equals(password)) {
             request.getSession().setAttribute("user", user); // Simpan user ke dalam session.
             return "redirect:/dashboard"; // Redirect langsung ke dashboard setelah berhasil sign-in.
         } else {
+            // model.addAttribute("gagalEmail", true);
+            // model.addAttribute("gagalPass",true);
             return "redirect:/signin";
         }
     }
