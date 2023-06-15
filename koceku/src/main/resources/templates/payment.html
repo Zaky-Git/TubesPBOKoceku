@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Getting Started: Serving Web Content</title>
+  <title>Koceku - Payment</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <!-- this is where we refer the css file from src/main/resources/static/main.css -->
   <link th:href="@{/main.css}" rel="stylesheet" />
@@ -36,7 +36,8 @@
                 </lord-icon>
               </div>
             </div>
-            <p class="text-gray-600 mb-4" th:text="'Phone number: ' + ${user.getPhoneNumber}"></p>
+            <p class="text-gray-600 ">Phone number:</p>
+            <p class="text-gray-600 mb-4" th:text="${user.getPhoneNumber}"></p>
             <button class="cursor-pointer active:scale-95 my-1" onclick="window.location.href = '/logout'">
               <a href=" #"
                 class="bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] active:bg-[#7859f4]">Logout</a>
@@ -173,13 +174,13 @@
                     <!-- Batas Drop Down -->
                     <div class="mb-4">
                       <label class="block text-gray-700 font-bold mb-2" for="sender">Nomor Tagihan</label>
-                      <input
+                      <input required
                         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="sender" type="text" placeholder="1022102210" name="nomorTagihan" />
                     </div>
                     <div class="mb-4">
                       <label class="block text-gray-700 font-bold mb-2" for="sender">Nominal</label>
-                      <input
+                      <input required
                         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="sender" type="text" placeholder="Enter Nominal" name="amount" />
                     </div>

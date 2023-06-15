@@ -19,7 +19,6 @@ public class ProfileController {
     @Autowired
     UserRepository userRepository;
 
-
     @GetMapping("/profile")
     public String profile(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
@@ -45,7 +44,6 @@ public class ProfileController {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             String emailPattern = "[a-zA-Z0-9._%+-]+@gmail\\.com";
-
             if (!firstName.equals("") && !lastName.equals("")
                     && password.equals(passwordConfirmation) && email.matches(emailPattern)
                     && !phoneNumber.equals("") && phoneNumber.startsWith("+62")) {

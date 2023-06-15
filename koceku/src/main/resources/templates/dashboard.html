@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Dashboard</title>
+    <title>Koceku - Dashboard</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- this is where we refer the css file from src/main/resources/static/main.css -->
     <link th:href="@{/main.css}" rel="stylesheet" />
@@ -38,7 +38,8 @@
                             </div>
 
                         </div>
-                        <p class="text-gray-600 mb-4" th:text="'Phone number: ' + ${user.getPhoneNumber}"></p>
+                        <p class="text-gray-600 ">Phone number:</p>
+                        <p class="text-gray-600 mb-4" th:text="${user.getPhoneNumber}"></p>
                         <button class="cursor-pointer active:scale-95 my-1" onclick="window.location.href = '/logout'">
                             <a href=" #"
                                 class="bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] active:bg-[#7859f4]">Logout</a>
@@ -137,7 +138,7 @@
                                         <tr th:if="${noHistory != true}" th:each="t, i : ${listHistory}"
                                             class="bg-gray-100">
                                             <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border text-center"
-                                                th:text="${i.count} + '.'"></td>
+                                                th:text="${i.index + 1 + '.'}"></td>
                                             <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"
                                                 th:text="${t.method}"></td>
                                             <td th:if="${t.method != 'Payment'}" class="px-4 py-2 border"

@@ -35,14 +35,25 @@
           <li class="nav-item">
             <a class="nav-link" href="/contactus">Contact</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/listFunction">Function</a>
+          </li>
         </ul>
       </div>
       <div class="mx-5">
         <a href="/signin">
-          <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-          <lord-icon src="https://cdn.lordicon.com/bhfjfgqz.json" trigger="hover" colors="primary:#121331"
-            style="width:40px;height:40px">
-          </lord-icon>
+          <div th:if="${!Login}">
+            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+            <lord-icon src="https://cdn.lordicon.com/bhfjfgqz.json" trigger="hover" colors="primary:#121331"
+              style="width:40px;height:40px">
+            </lord-icon>
+          </div>
+          <div th:if="${Login}">
+            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+            <lord-icon src="https://cdn.lordicon.com/dqxvvqzi.json" trigger="hover"
+              colors="outline:#121331,primary:#16c72e,secondary:#16c72e" style="width:50px;height:50px">
+            </lord-icon>
+          </div>
         </a>
       </div>
     </div>
@@ -69,12 +80,12 @@
           <h2>Apa itu Koceku ?</h2>
           <p class="lead">
             Koceku adalah aplikasi berbasis web yang dirancang untuk memenuhi
-            kebutuhan tugas besar Mata Kuliah Pemrograman berbasis Objek
+            kebutuhan tugas besar Mata Kuliah Pemrograman berbasis Objek.
           </p>
           <p class="mb-0">
-            Koceku adalah aplikasi yang bergerak di bidang pembayaran digital
+            Koceku bergerak di bidang pembayaran digital
             yang memungkinkan user untuk melakukan top-up, mengirim uang ke
-            sesama pengguna koceku, melakukan pembayaran kebutuhan sehari-hari
+            sesama pengguna koceku dan melakukan pembayaran kebutuhan sehari-hari.
           </p>
         </div>
       </div>

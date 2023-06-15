@@ -64,6 +64,12 @@ public class AuthenticatorController {
         }
     }
 
+    @GetMapping("/signup")
+    public String signupPage(Model model) {
+        model.addAttribute("user", new User());
+        return "signup";
+    }
+
     @PostMapping("/signup")
     public String signupPage(@ModelAttribute("user") User user) {
         if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() || user.getEmail().isEmpty()
@@ -78,9 +84,13 @@ public class AuthenticatorController {
         }
 
         if (phoneNumber.startsWith("08")) {
-            phoneNumber = "+62" + phoneNumber.substring(2);
+            phoneNumber = "+628" + phoneNumber.substring(2);
             user.setPhoneNumber(phoneNumber);
         }
+
+        user.setFirstName(user.getFirstName().toUpperCase());
+        user.setLastName(user.getLastName().toUpperCase());
+        user.setEmail(user.getEmail().toUpperCase());
 
         Ewallet wallet = new Ewallet();
         user.setEwallet(wallet);

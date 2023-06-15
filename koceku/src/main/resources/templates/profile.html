@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Koceku | Profile</title>
+  <title>Koceku - Profile</title>
   <!-- this is where we refer the css file from src/main/resources/static/main.css -->
   <link rel="stylesheet" th:href="@{/main.css}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -38,7 +38,8 @@
                 </lord-icon>
               </div>
             </div>
-            <p class="text-gray-600 mb-4" th:text="'Phone number: ' + ${user.getPhoneNumber}"></p>
+            <p class="text-gray-600 ">Phone number:</p>
+            <p class="text-gray-600 mb-4" th:text="${user.getPhoneNumber}"></p>
             <button class="cursor-pointer active:scale-95 my-1" onclick="window.location.href = '/logout'">
               <a href=" #"
                 class="bg-[#6245D5] text-white px-4 py-2 rounded-md hover:bg-[#704ff5] active:bg-[#7859f4]">Logout</a>
@@ -120,9 +121,9 @@
                       disabled />
                     <input id="phoneNumber" class="p-3 rounded-lg" name="phoneNumber"
                       th:value="${user.getPhoneNumber()}" type="text" disabled />
-                    <input placeholder="your password" id="password" class="p-3 rounded-lg" style="display: none;"
-                      name="password" type="text" />
-                    <input placeholder="Confirm password" id="passwordConfirmation" class="p-3 rounded-lg"
+                    <input required placeholder="your password" id="password" class="p-3 rounded-lg"
+                      style="display: none;" name="password" type="text" />
+                    <input required placeholder="Confirm password" id="passwordConfirmation" class="p-3 rounded-lg"
                       style="display: none;" name="passwordConfirmation" type="text" />
                   </div>
                 </div>
