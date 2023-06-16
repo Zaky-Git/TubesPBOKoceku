@@ -43,25 +43,15 @@ public class ProfileController {
             @RequestParam("passwordConfirmation") String passwordConfirmation) {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            String emailPattern = "[a-zA-Z0-9._%+-]+@gmail\\.com";
-            if (!firstName.equals("") && !lastName.equals("")
-                    && password.equals(passwordConfirmation) && email.matches(emailPattern)
-                    && !phoneNumber.equals("") && phoneNumber.startsWith("+62")) {
-                model.addAttribute(user);
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
                 user.setEmail(email);
                 user.setPhoneNumber(phoneNumber);
                 userRepository.save(user);
-                model.addAttribute("wrongFormat", false);
-                return "profile";
-            } else {
-                model.addAttribute("wrongFormat", true);
                 return "redirect:/profile";
-            }
+            
         } else {
             return "redirect:/signin";
         }
     }
-
 }
