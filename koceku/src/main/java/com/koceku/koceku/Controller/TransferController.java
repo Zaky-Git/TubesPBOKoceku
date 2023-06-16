@@ -43,6 +43,7 @@ public class TransferController {
                     "Transfer");
             if (transactionHistory != null) {
                 Collections.reverse(transactionHistory);
+                transactionHistory.removeIf(t -> t.getType().contains("Income"));
                 model.addAttribute("transactions", transactionHistory);
             } else {
                 model.addAttribute("noHistory", true);

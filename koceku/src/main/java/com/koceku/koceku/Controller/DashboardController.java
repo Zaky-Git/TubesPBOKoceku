@@ -31,6 +31,7 @@ public class DashboardController {
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboard";
             } else {
+                listHistory.removeIf(transaction -> transaction.getMethod().contains("Payment"));
                 Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
@@ -53,6 +54,7 @@ public class DashboardController {
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboardSuccess";
             } else {
+                listHistory.removeIf(transaction -> transaction.getMethod().contains("Payment"));
                 Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
@@ -75,6 +77,7 @@ public class DashboardController {
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboardFailed";
             } else {
+                listHistory.removeIf(transaction -> transaction.getMethod().contains("Payment"));
                 Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
@@ -96,6 +99,7 @@ public class DashboardController {
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboardIncome";
             } else {
+                listHistory.removeIf(transaction -> transaction.getMethod().contains("Payment"));
                 Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
@@ -118,6 +122,7 @@ public class DashboardController {
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboardExpense";
             } else {
+                listHistory.removeIf(transaction -> transaction.getMethod().contains("Payment"));
                 Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);
@@ -140,6 +145,7 @@ public class DashboardController {
                 model.addAttribute("noHistory", (boolean) true);
                 return "dashboardPayment";
             } else {
+
                 Collections.reverse(listHistory);
                 model.addAttribute("noHistory", (boolean) false);
                 model.addAttribute("listHistory", listHistory);

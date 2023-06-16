@@ -72,21 +72,23 @@ public class AuthenticatorController {
 
     @PostMapping("/signup")
     public String signupPage(@ModelAttribute("user") User user) {
-        if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() || user.getEmail().isEmpty()
-                || user.getPassword().isEmpty()) {
-            return "signup";
-        }
+        // if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() ||
+        // user.getEmail().isEmpty()
+        // || user.getPassword().isEmpty()) {
+        // return "signup";
+        // }
 
-        String phoneNumber = user.getPhoneNumber();
-        if (phoneNumber.isEmpty() || (!phoneNumber.startsWith("08") && !phoneNumber.startsWith("+62"))
-                || phoneNumber.length() >= 14) {
-            return "signup";
-        }
+        // String phoneNumber = user.getPhoneNumber();
+        // if (phoneNumber.isEmpty() || (!phoneNumber.startsWith("08") &&
+        // !phoneNumber.startsWith("+62"))
+        // || phoneNumber.length() >= 14) {
+        // return "signup";
+        // }
 
-        if (phoneNumber.startsWith("08")) {
-            phoneNumber = "+628" + phoneNumber.substring(2);
-            user.setPhoneNumber(phoneNumber);
-        }
+        // if (phoneNumber.startsWith("08")) {
+        // phoneNumber = "+628" + phoneNumber.substring(2);
+        // user.setPhoneNumber(phoneNumber);
+        // }
 
         user.setFirstName(user.getFirstName().toUpperCase());
         user.setLastName(user.getLastName().toUpperCase());
